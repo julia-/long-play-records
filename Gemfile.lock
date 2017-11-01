@@ -501,6 +501,8 @@ GEM
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
     i18n (0.9.0)
       concurrent-ruby (~> 1.0)
     image_processing (0.4.5)
@@ -525,6 +527,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
+    multi_xml (0.6.0)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -638,6 +641,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   fastimage
+  httparty
   image_processing
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)

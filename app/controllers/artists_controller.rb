@@ -5,6 +5,21 @@ class ArtistsController < ApplicationController
   # GET /artists.json
   def index
     @artists = Artist.all
+
+    query = params[:query]
+
+    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
+
+    response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+    @data = response.body
+
+    if query
+      @search_results = response['results'][0]['title']
+    end
+
+    # @discog_number = @artist_search_results['id']
+    # @discog_id = Artist.find_by(discog_number: @discog_number)
   end
 
   # GET /artists/1
@@ -15,6 +30,18 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
+
+    query = params[:query]
+
+    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
+
+    response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+
+    @results = response["results"]
+    @discog_number = @results['id']
+    @discog_id = Artist.find_by(discog_number: @discog_number)
+
   end
 
   # GET /artists/1/edit
@@ -24,7 +51,13 @@ class ArtistsController < ApplicationController
   # POST /artists
   # POST /artists.json
   def create
-    @artist = Artist.new(artist_params)
+    @artist = Artist.new()
+
+    unless @discog_id.present?
+      response = HTTParty.get("https://api.discogs.com/artists/#{@discog_id}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+
+      @artist = Artist.create! name: response['name'], biography: response['profile'], image: response['images'][1]['resource_url'], discog_number: response['id']
+    end
 
     respond_to do |format|
       if @artist.save
