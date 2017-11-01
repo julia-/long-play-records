@@ -20,10 +20,9 @@
   <%= @profile.last_name %>
 </p>
 
-<p>
-  <strong>Image data:</strong>
-  <%= @profile.image_data %>
-</p>
+<figure>
+  <%= image_tag @profile.image_url(:original), alt: "#{@profile.username}"  %>
+</figure>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>
