@@ -35,6 +35,7 @@ gem 'fastimage'
 gem 'image_processing'
 gem 'mini_magick'
 gem 'shrine'
+gem 'httparty'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -2,32 +2,12 @@
 
 <h1>Artists</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Biography</th>
-      <th>Image data</th>
-      <th>Discog number</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_with url: artists_path, local: true, method: :get do |f| %>
+  <%= f.label :query, 'Search for an artist' %>
+  <%= f.text_field :query %>
+  <%= f.submit 'Search' %>
+<% end %>
 
-  <tbody>
-    <% @artists.each do |artist| %>
-      <tr>
-        <td><%= artist.name %></td>
-        <td><%= artist.biography %></td>
-        <td><%= artist.image_data %></td>
-        <td><%= artist.discog_number %></td>
-        <td><%= link_to 'Show', artist %></td>
-        <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-        <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<%= @search_results %>
 
 <%= link_to 'New Artist', new_artist_path %>
