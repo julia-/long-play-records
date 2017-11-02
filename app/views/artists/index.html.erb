@@ -2,10 +2,10 @@
 
 <h1>Artists</h1>
 
-<%= form_with url: artists_path, local: true, method: :get do |f| %>
-  <%= f.label :query, 'Search for an artist' %>
-  <%= f.text_field :query %>
-  <%= f.submit 'Search' %>
+<%= form_with(model: @artist, local: true) do |form| %>
+  <%= form.label :name, 'Search for an artist' %>
+  <%= form.text_field :name %>
+  <%= form.submit 'Search' %>
 <% end %>
 
 <%= @search_results %>

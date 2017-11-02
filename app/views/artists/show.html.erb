@@ -10,10 +10,9 @@
   <%= @artist.biography %>
 </p>
 
-<p>
-  <strong>Image data:</strong>
-  <%= @artist.image_data %>
-</p>
+<figure>
+  <%= image_tag @artist.image_data, alt: "#{@artist.name}"  %>
+</figure>
 
 <p>
   <strong>Discog number:</strong>
