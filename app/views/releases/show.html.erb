@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @release.title %>
+</p>
+
+<p>
+  <strong>Catalogue number:</strong>
+  <%= @release.catalogue_number %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @release.format %>
+</p>
+
+<p>
+  <strong>Country code:</strong>
+  <%= @release.country_code %>
+</p>
+
+<p>
+  <strong>Released at:</strong>
+  <%= @release.released_at %>
+</p>
+
+<p>
+  <strong>Image data:</strong>
+  <%= @release.image_data %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @release.artist %>
+</p>
+
+<%= link_to 'Edit', edit_release_path(@release) %> |
+<%= link_to 'Back', releases_path %>

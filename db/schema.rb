@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101084629) do
+ActiveRecord::Schema.define(version: 20171102101639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,21 @@ ActiveRecord::Schema.define(version: 20171101084629) do
     t.index ["username"], name: "index_profiles_on_username", unique: true
   end
 
+  create_table "releases", force: :cascade do |t|
+    t.string "title"
+    t.string "catalogue_number"
+    t.string "format"
+    t.string "country_code"
+    t.date "released_at"
+    t.text "image_data"
+    t.bigint "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_releases_on_artist_id"
+    t.index ["catalogue_number"], name: "index_releases_on_catalogue_number"
+    t.index ["title"], name: "index_releases_on_title"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -74,4 +89,5 @@ ActiveRecord::Schema.define(version: 20171101084629) do
   end
 
   add_foreign_key "profiles", "users"
+  add_foreign_key "releases", "artists"
 end
