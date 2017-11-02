@@ -4,19 +4,21 @@ class ArtistsController < ApplicationController
   # GET /artists
   # GET /artists.json
   def index
+    @artist = Artist.new
     @artists = Artist.all
 
-    query = params[:query]
+    # query = params[:query]
+    #
+    # discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+    # discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
+    #
+    # response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+    # @data = response.body
 
-    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
-    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
-
-    response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
-    @data = response.body
-
-    if query
-      @search_results = response['results'][0]['title']
-    end
+    # if query
+    #   @search_results = response['results'][0]['title']
+    #   redirect_to new_artist_path
+    # end
 
     # @discog_number = @artist_search_results['id']
     # @discog_id = Artist.find_by(discog_number: @discog_number)
@@ -30,18 +32,6 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
-
-    query = params[:query]
-
-    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
-    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
-
-    response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
-
-    @results = response["results"]
-    @discog_number = @results['id']
-    @discog_id = Artist.find_by(discog_number: @discog_number)
-
   end
 
   # GET /artists/1/edit
@@ -51,14 +41,24 @@ class ArtistsController < ApplicationController
   # POST /artists
   # POST /artists.json
   def create
-    @artist = Artist.new()
+    @artist = Artist.new(artist_params)
 
-    unless @discog_id.present?
-      response = HTTParty.get("https://api.discogs.com/artists/#{@discog_id}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+    query = artist_params[:name]
+    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
 
-      @artist = Artist.create! name: response['name'], biography: response['profile'], image: response['images'][1]['resource_url'], discog_number: response['id']
-    end
+    search_response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
 
+    discog_id = search_response['results'][0]['id']
+
+    response = HTTParty.get("https://api.discogs.com/artists/#{discog_id}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+    # byebug
+    # byebug
+    @artist.name = response['name']
+    @artist.biography = response['profile']
+    @artist.image_data = response['images'][0]['resource_url']
+    @artist.discog_number = response['id']
+    # byebug
     respond_to do |format|
       if @artist.save
         format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
