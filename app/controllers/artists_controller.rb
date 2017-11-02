@@ -58,7 +58,13 @@ class ArtistsController < ApplicationController
     @artist.biography = response['profile']
     @artist.image_data = response['images'][0]['resource_url']
     @artist.discog_number = response['id']
-    # byebug
+    response['members'].each do |member|
+      name_array = member['name'].split(' ')
+      first_name = name_array[0]
+      last_name = name_array[1]
+      Member.create! first_name: first_name, last_name: last_name
+    end
+
     respond_to do |format|
       if @artist.save
         format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
