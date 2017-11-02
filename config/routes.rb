@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :releases
   root 'profiles#index'
   
   devise_for :users
