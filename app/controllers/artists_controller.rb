@@ -6,22 +6,6 @@ class ArtistsController < ApplicationController
   def index
     @artist = Artist.new
     @artists = Artist.all
-
-    # query = params[:query]
-    #
-    # discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
-    # discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
-    #
-    # response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
-    # @data = response.body
-
-    # if query
-    #   @search_results = response['results'][0]['title']
-    #   redirect_to new_artist_path
-    # end
-
-    # @discog_number = @artist_search_results['id']
-    # @discog_id = Artist.find_by(discog_number: @discog_number)
   end
 
   # GET /artists/1
@@ -43,22 +27,29 @@ class ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
 
-    query = artist_params[:name]
+    artist_name = artist_params[:name]
+
     discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
     discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
 
-    search_response = HTTParty.get("https://api.discogs.com/database/search?q=#{query}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+    search_response = HTTParty.get("https://api.discogs.com/database/search?q=#{artist_name}&?artist&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
 
     discog_id = search_response['results'][0]['id']
 
     response = HTTParty.get("https://api.discogs.com/artists/#{discog_id}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
-    # byebug
-    # byebug
+
     @artist.name = response['name']
     @artist.biography = response['profile']
     @artist.image_data = response['images'][0]['resource_url']
     @artist.discog_number = response['id']
-    # byebug
+
+    response['members'].each do |member|
+      name_array = member['name'].split(' ')
+      first_name = name_array[0]
+      last_name = name_array[1]
+      Member.create! first_name: first_name, last_name: last_name
+    end
+
     respond_to do |format|
       if @artist.save
         format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
