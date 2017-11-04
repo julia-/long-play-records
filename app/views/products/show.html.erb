@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Postage:</strong>
+  <%= @product.postage %>
+</p>
+
+<p>
+  <strong>Record condition:</strong>
+  <%= @product.record_condition %>
+</p>
+
+<p>
+  <strong>Sleeve condition:</strong>
+  <%= @product.sleeve_condition %>
+</p>
+
+<p>
+  <strong>Discogs:</strong>
+  <%= @product.discogs_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @product.user %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
