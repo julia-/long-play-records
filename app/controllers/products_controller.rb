@@ -15,6 +15,21 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+
+    # save user query to perform api call
+    query = params[:query]
+
+    # If query is present perform api call
+    if query
+      discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+      discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
+
+      # perform search for query and limit to vinyl
+      response = HTTParty.get("https://api.discogs.com/database/search?release_title=\"#{query}\"&format=vinyl&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+
+      # return results array as instance variable
+      @release_data = response['results']
+    end
   end
 
   # GET /products/1/edit
@@ -25,6 +40,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.user_id = current_user
 
     respond_to do |format|
       if @product.save
@@ -69,6 +85,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :postage, :record_condition, :sleeve_condition, :discogs_id, :description, :user_id)
+      params.require(:product).permit(:name, :price, :postage, :record_condition, :sleeve_condition, :discogs_id, :description, :query)
     end
 end
