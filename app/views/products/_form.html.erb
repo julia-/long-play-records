@@ -1,3 +1,9 @@
+<%= form_with url: new_product_path, local: true, method: :get do  |form| %>
+  <%= form.label :query, 'Search for a release' %>
+  <%= form.text_field :query %>
+  <%= form.submit 'Search', name: nil %>
+<% end %>
+
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
@@ -9,6 +15,15 @@
       <% end %>
       </ul>
     </div>
+  <% end %>
+
+  <% if @release_data %>
+    <% @release_data.each do |release| %>
+      <div>
+        <%= radio_button_tag(:discogs_id, release['id']) %>
+        <%= label_tag(:age_child, "#{release['title']} (#{release['year']})") %>
+      </div>
+    <% end %>
   <% end %>
 
   <div class="field">
@@ -37,18 +52,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :discogs_id %>
-    <%= form.text_field :discogs_id, id: :product_discogs_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, id: :product_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :product_user_id %>
   </div>
 
   <div class="actions">
