@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @release_data['title'] %></h1>
-<h2><%= @release_data['artists']['name'] %></h2>
+<h2><%= @release_data['artists'][0]['name'] %></h2>
 <p>
   <%= @release_data['labels'][0]['name'] %> <%= @release_data['country'] %> (<%= @release_data['year'] %>)
 </p>
