@@ -43,12 +43,12 @@
 
   <div class="field">
     <%= form.label :record_condition %>
-    <%= form.text_field :record_condition, id: :product_record_condition %>
+    <%= form.select(:record_condition, [['Mint'], ['Near Mint'], ['Very Good'], ['Good'], ['Fair'], ['Poor']], prompt: 'Select condition', id: :product_record_condition ) %>
   </div>
 
   <div class="field">
     <%= form.label :sleeve_condition %>
-    <%= form.text_field :sleeve_condition, id: :product_sleeve_condition %>
+    <%= form.select(:sleeve_condition, [['Mint'], ['Near Mint'], ['Very Good'], ['Good'], ['Fair'], ['Poor']], prompt: 'Select condition', id: :product_sleeve_condition) %>
   </div>
 
   <div class="field">
