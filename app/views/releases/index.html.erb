@@ -2,38 +2,37 @@
 
 <h1>Releases</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Catalogue number</th>
-      <th>Format</th>
-      <th>Country code</th>
-      <th>Released at</th>
-      <th>Image data</th>
-      <th>Artist</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_with url: artist_releases_path(@artist), local: true, method: :get do  |form| %>
+  <%= form.label :query, 'Search for a release' %>
+  <%= form.text_field :query %>
+  <%= form.submit 'Search', name: nil %>
+<% end %>
 
-  <tbody>
-    <% @releases.each do |release| %>
-      <tr>
-        <td><%= release.title %></td>
-        <td><%= release.catalogue_number %></td>
-        <td><%= release.format %></td>
-        <td><%= release.country_code %></td>
-        <td><%= release.released_at %></td>
-        <td><%= release.image_data %></td>
-        <td><%= release.artist %></td>
-        <td><%= link_to 'Show', release %></td>
-        <td><%= link_to 'Edit', edit_release_path(release) %></td>
-        <td><%= link_to 'Destroy', release, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%#= render @release_results %>
+<% if @release_data %>
+  <% @release_data.each do |release| %>
+    <div>
+      <p><%= release['title'].split(' - ').last %></p>
+      <% release['format'].each do |label| %>
+        <ul>
+          <li><%= label %></li>
+        </ul>
+      <% end %>
+      <p><%= release['year'] %></p>
+      <% release['label'].each do |label| %>
+        <ul>
+          <li><%= label %></li>
+        </ul>
+      <% end %>
+      <% release['genre'].each do |label| %>
+        <ul>
+          <li><%= label %></li>
+        </ul>
+      <% end %>
+      <p><%= release['country'] %></p>
+      <p><%#= button_to 'Sell Record' new_product_path %></p>
+    </div>
+  <% end %>
+<% end %>
 
-<br>
-
-<%= link_to 'New Release', new_release_path %>
+<%#= link_to 'New Release', new_release_path %>
