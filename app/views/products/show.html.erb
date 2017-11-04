@@ -1,44 +1,45 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @release_data['title'] %></h1>
+<h2><%= @release_data['artists']['name'] %></h2>
 <p>
-  <strong>Name:</strong>
-  <%= @product.name %>
+  <%= @release_data['labels'][0]['name'] %> <%= @release_data['country'] %> (<%= @release_data['year'] %>)
 </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+<p><%= number_to_currency @product.price %></p>
+<p>+ <%= number_to_currency @product.postage %></p>
 
-<p>
-  <strong>Postage:</strong>
-  <%= @product.postage %>
-</p>
+<button type="button" name="button">Add to Bag</button>
 
-<p>
-  <strong>Record condition:</strong>
-  <%= @product.record_condition %>
-</p>
+<h3>Description</h3>
+<p><%= @product.description %></p>
 
-<p>
-  <strong>Sleeve condition:</strong>
-  <%= @product.sleeve_condition %>
-</p>
+<h3>Condition</h3>
+<dl>
+  <dt>Record condition</dt>
+  <dd><%= @product.record_condition %></dd>
+  <dt>Sleeve condition</dt>
+  <dd><%= @product.sleeve_condition %></dd>
+</dl>
 
-<p>
-  <strong>Discogs:</strong>
-  <%= @product.discogs_id %>
-</p>
+<h3>Tracklist</h3>
+<% @release_data['tracklist'].each do |track| %>
+  <ul>
+    <li><%= track['title'] %> (<%= track['duration'] %>)</li>
+  </ul>
+<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+<h3>Shipping &amp; Postage</h3>
+<p>Orders will be cancelled if payment is not received within 14 days.</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @product.user %>
-</p>
+<h4>UK Postage</h4>
+<p>1st LP or 12" or 10"- £3.50 (any extra will be another £1.00)</p>
+
+<h4>Europe Postage</h4>
+<p>1st LP or 12" or 10"- £6.50 (any extra will be another £2.00)</p>
+
+<h4>International Postage</h4>
+<p>1st LP or 12" or 10"- £9.99 (any extra will be another £3.00)</p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
