@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :artists do
     resources :members
   end
-  resources :releases
+  resources :artists do
+    resources :releases
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

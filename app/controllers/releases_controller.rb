@@ -1,10 +1,24 @@
 class ReleasesController < ApplicationController
+  before_action :set_artist
   before_action :set_release, only: [:show, :edit, :update, :destroy]
 
   # GET /releases
   # GET /releases.json
   def index
-    @releases = Release.all
+    query = params[:query]
+    artist_name = @artist.name
+
+    database_search = Release.search_database_release(query, artist)
+
+    if !database_search.empty?
+      database_search
+    else
+      discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+      discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
+
+      response = HTTParty.get("https://api.discogs.com/database/search?release_title=#{query}&artist=#{artist}&format=vinyl&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+
+      @release_data = response['results']
   end
 
   # GET /releases/1
@@ -25,6 +39,35 @@ class ReleasesController < ApplicationController
   # POST /releases.json
   def create
     @release = Release.new(release_params)
+
+    # release_title = release_params[:title]
+    # artist_name = @artist.name
+    #
+    # discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+    # discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
+    #
+    # response = HTTParty.get("https://api.discogs.com/database/search?release_title=#{release_title}&artist=#{artist_name}&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+
+    # byebug
+
+    response['results'].each do |result|
+      if result['format'].include? "Vinyl"
+        @release.artist_id = @artist
+
+        release_title = response['title'].split(' - ').last
+        @release.title = release_title
+
+        format_array = response['format'].split(' ')
+        format_type = format_array.select { |format| format == "LP" }
+        @release.format = format_type.join
+
+        @release.released_at = response['year']
+        @release.image_data = response['images'][0]['resource_url']
+        @release.country_code = response['id']
+        @release.format = response['id']
+        @release.artist_id = response['id']
+      end
+    end
 
     respond_to do |format|
       if @release.save
@@ -67,8 +110,12 @@ class ReleasesController < ApplicationController
       @release = Release.find(params[:id])
     end
 
+    def set_artist
+      @artist = Artist.find(params[:artist_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def release_params
-      params.require(:release).permit(:title, :catalogue_number, :format, :country_code, :released_at, :image_data, :artist_id)
+      params.require(:release).permit(:title, :catalogue_number, :format, :country_code, :released_at, :image_data, :artist_id, :query)
     end
 end
