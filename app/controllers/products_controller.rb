@@ -11,13 +11,10 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     discogs = @product.discogs_id
-    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
-    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
 
-    # perform search for query and limit to vinyl
-    response = HTTParty.get("https://api.discogs.com/releases#{discogs}&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+    response = HTTParty.get("https://api.discogs.com/releases/#{discogs}")
 
-    @release_data = response.body
+    @release_data = response
   end
 
   # GET /products/new
