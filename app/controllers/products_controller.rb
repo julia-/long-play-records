@@ -12,6 +12,9 @@ class ProductsController < ApplicationController
   def show
     discogs = @product.discogs_id
 
+    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
+
     response = HTTParty.get("https://api.discogs.com/releases/#{discogs}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
 
     @release_data = response
@@ -24,7 +27,7 @@ class ProductsController < ApplicationController
     # save user query to perform api call
     query = params[:query]
 
-    # If query is present perform api call
+    # if query is present perform api call
     if query
       discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
       discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
@@ -34,7 +37,6 @@ class ProductsController < ApplicationController
 
       # return results array as instance variable
       @release_data = response['results']
-      # byebug
     end
   end
 
@@ -48,12 +50,16 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user_id = current_user.id
 
-    discogs_id = @product.discogs_id
+    discogs = @product.discogs_id
+
+    discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
+    discogs_secret_api_key = ENV.fetch('DISCOGS_SECRET_API_KEY')
 
     # Search discogs to retrive release title
-    response = HTTParty.get("https://api.discogs.com/releases/#{discogs_id}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+    response = HTTParty.get("https://api.discogs.com/releases/#{discogs}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
 
-    @product.name = response['title']
+    @product.title = response['title']
+    @product.artist = response['artists'][0]['name']
 
     respond_to do |format|
       if @product.save
