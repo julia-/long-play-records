@@ -1,8 +1,4 @@
 class ProfilePolicy < ApplicationPolicy
-  def new?
-    return true if user.present? && user == profile
-  end
-
   def update?
     return true if user.present? && user == profile.user
   end
