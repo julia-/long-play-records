@@ -1,0 +1,21 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to 'Long Play Records', root_path, class: 'navbar-brand' %>
+    </div>
+    <div id="navbar">
+
+    <ul class="nav navbar-nav pull-right">
+      <li><% link_to 'Home', root_path %></li>
+      <ul class="nav navbar-nav pull-right">
+        <% if user_signed_in? %>
+        <li><%= current_user.email %></li>
+        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Log In', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </ul>
+  </div>
+</nav>
