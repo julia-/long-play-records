@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_profile_presence, only: [:new, :create]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles
@@ -63,6 +64,10 @@ class ProfilesController < ApplicationController
   end
 
   private
+    def check_profile_presence
+      user_profile = current_user.profile
+      redirect_to profile_path(user_profile.id) if user_profile
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = Profile.find(params[:id])
