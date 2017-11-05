@@ -1,24 +1,36 @@
-# README
+# Long Play Records Marketplace
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Problem
 
-Things you may want to cover:
+## Solution
 
-* Ruby version
+## Planning & Design
+### User stories
 
-* System dependencies
+### User journeys
 
-* Configuration
+### ERD
 
-* Database creation
+### Wireframes
 
-* Database initialization
+## Development
 
-* How to run the test suite
+## Technologies used
+### API
+[Discogs API](https://www.discogs.com/developers)
 
-* Services (job queues, cache servers, search engines, etc.)
+### Gems
+```ruby
+gem 'devise'
+gem 'pundit'
+gem 'aws-sdk', '~> 3'
+gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'jquery-rails'
+gem 'fastimage'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'shrine'
+gem 'httparty'
+```
 
-* Deployment instructions
-
-* ...
+## Deployment
