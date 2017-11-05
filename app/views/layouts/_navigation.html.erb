@@ -10,7 +10,7 @@
 
     <% if user_signed_in? %>
       <% if current_user.profile %>
-        <span class="navbar-text">Hi, <%= current_user.first_name %>!</span>
+        <span class="navbar-text">Hi, <%= current_user.profile.first_name %>!</span>
         <%= link_to 'Profile', profile_path(current_user.profile), class: 'nav-item nav-link' %>
       <% else %>
         <span class="navbar-text">Hi, <%= current_user.email %>!</span>
