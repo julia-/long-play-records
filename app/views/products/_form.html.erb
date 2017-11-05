@@ -41,10 +41,14 @@
               <span class="input-group-addon">
                 <%= form.radio_button(:discogs_id, release['id'], required: true) %>
               </span>
+              <% if release['thumb'].empty? %>
+                <%= image_tag 'record_placeholder.png', class: 'cover-art' %>
+              <% else %>
+                <%= image_tag release['thumb'], class: 'cover-art' %>
+              <% end %>
               <%= form.label(:discogs_id, "#{release['title']} | Released: #{release['year']} | Catalogue number: #{release['catno']} | Country: #{release['country']} | Format: #{format_list(release['format'])}", class: 'form-control') %>
             </div>
           </div>
-
         <% end %>
       <% end %>
 
