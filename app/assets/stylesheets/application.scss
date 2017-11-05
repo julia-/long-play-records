@@ -5,8 +5,13 @@
 }
 
 .form-control,
-.input-group-addon {
+.input-group-addon,
+.cover-art {
   border: 1px solid #333;
+}
+
+.cover-art {
+  border-right: none;
 }
 
 .btn-outline-dark {

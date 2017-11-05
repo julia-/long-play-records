@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   def show
     discogs = @product.discogs_id
 
-    response = HTTParty.get("https://api.discogs.com/releases/#{discogs}")
+    response = HTTParty.get("https://api.discogs.com/releases/#{discogs}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
 
     @release_data = response
   end
@@ -34,6 +34,7 @@ class ProductsController < ApplicationController
 
       # return results array as instance variable
       @release_data = response['results']
+      # byebug
     end
   end
 
@@ -46,6 +47,13 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user_id = current_user.id
+
+    discogs_id = @product.discogs_id
+
+    # Search discogs to retrive release title
+    response = HTTParty.get("https://api.discogs.com/releases/#{discogs_id}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
+
+    @product.name = response['title']
 
     respond_to do |format|
       if @product.save
