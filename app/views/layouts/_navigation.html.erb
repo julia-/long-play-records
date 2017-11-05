@@ -1,21 +1,28 @@
-<nav class="navbar navbar-inverse">
-  <div class="container">
-    <div class="navbar-header">
-      <%= link_to 'Long Play Records', root_path, class: 'navbar-brand' %>
-    </div>
-    <div id="navbar">
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <%= link_to 'Long Play Records', root_path, class: 'navbar-brand' %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <ul class="nav navbar-nav pull-right">
-      <li><% link_to 'Home', root_path %></li>
-      <ul class="nav navbar-nav pull-right">
-        <% if user_signed_in? %>
-        <li><%= current_user.email %></li>
-        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to 'Log In', new_user_session_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-        <% end %>
-      </ul>
-    </ul>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <%= link_to 'Home', root_path, class: 'nav-item nav-link' %>
+    <%= link_to 'Vinyl', products_path, class: 'nav-item nav-link' %>
+
+    <% if user_signed_in? %>
+      <% if current_user.profile %>
+        <span class="navbar-text">Hi, <%= current_user.first_name %>!</span>
+        <%= link_to 'Profile', profile_path(current_user.profile), class: 'nav-item nav-link' %>
+      <% else %>
+        <span class="navbar-text">Hi, <%= current_user.email %>!</span>
+      <% end %>
+      <a class="nav-item nav-link" href="#">Wishlist</a>
+      <a class="nav-item nav-link" href="#">Cart</a>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-item nav-link' %>
+    <% else %>
+      <%= link_to 'Sign in', new_user_session_path, class: 'nav-item nav-link' %>
+      <%= link_to 'Sign up', new_user_registration_path, class: 'nav-item nav-link' %>
+      <a class="nav-item nav-link" href="#">Wishlist</a>
+      <a class="nav-item nav-link" href="#">Cart</a>
+    <% end %>
   </div>
 </nav>
