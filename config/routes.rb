@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  resources :products
   root 'profiles#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
+  resources :products
+
   resources :profiles
+
   resources :artists do
     resources :members
   end
+
   resources :artists do
     resources :releases
   end
