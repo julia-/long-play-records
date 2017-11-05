@@ -1,28 +1,104 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>Profile</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <h3>Account</h3>
+    </div>
+    <div class="col-md-3">
+      <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-outline-dark' %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <figure>
+        <%= image_tag @profile.image_url(:thumb), alt: "#{@profile.username}"  %>
+      </figure>
+    </div>
+    <div class="col-md-3">
+      <p>
+        <strong>Username</strong>
+        <%= @profile.username %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @profile.user %>
-</p>
+      <p>
+        <strong>Name</strong>
+        <%= @profile.first_name %> <%= @profile.last_name %>
+      </p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @profile.username %>
-</p>
+      <p><strong>Buyer rating</strong></p>
+      <%= link_to 'Change password', edit_user_registration_path(current_user), class: 'font-weight-bold' %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <h4>Billing address</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>Shipping address</h4>
+    </div>
+  </div>
+  <% if !@profile.user.products.empty? %>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h3>Store details</h3>
+        <p>Coming soon</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h3>Store orders</h3>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h3>Store inventory</h3>
+        <%= link_to 'Add product', new_product_path %>
+        <% @profile.user.products.in_groups_of(4, false) do |group| %>
+          <div class="row">
+            <% group.each do |product| %>
+              <div class="col-3">
+                <%= link_to product do %>
+                  <h2><%= product.name %></h2>
+                  <p><%= product.price %></p>
+                <% end %>
+                <% if current_user == product.user %>
+                  <%= link_to 'Edit', edit_product_path(product) %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h3>Your purchases</h3>
+      </div>
+    </div>
+  <% else %>
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h3>Order History</h3>
+        <p>Coming soon</p>
+      </div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
-
-<figure>
-  <%= image_tag @profile.image_url(:original), alt: "#{@profile.username}"  %>
-</figure>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3>Wishlist</h3>
+      <p>You currently have not yet saved any products to your wishlist</p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3>Saved sellers</h3>
+      <p>You currently do not have any saved sellers</p>
+    </div>
+  </div>
+</div>
