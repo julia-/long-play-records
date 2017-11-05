@@ -505,6 +505,8 @@ GEM
     execjs (2.7.0)
     fastimage (2.1.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     httparty (0.15.6)
@@ -655,6 +657,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   fastimage
+  font-awesome-rails
   httparty
   image_processing
   jbuilder (~> 2.5)

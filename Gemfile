@@ -39,6 +39,7 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'shrine'
 gem 'httparty'
+gem 'font-awesome-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
