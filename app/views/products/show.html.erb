@@ -6,6 +6,10 @@
   <%= @release_data['labels'][0]['name'] %> <%= @release_data['country'] %> (<%= @release_data['year'] %>)
 </p>
 
+<figure>
+  <%= image_tag @release_data['thumb'] %>
+</figure>
+
 <p><%= number_to_currency @product.price %></p>
 <p>+ <%= number_to_currency @product.postage %></p>
 
@@ -21,6 +25,15 @@
   <dt>Sleeve condition</dt>
   <dd><%= @product.sleeve_condition %></dd>
 </dl>
+
+<h3>Seller</h3>
+<p><strong><%= link_to @product.user.profile.username, profile_path(@product.user.profile) %></strong></p>
+<p>98.3% | 356 reviews</p>
+<p>Save seller</p>
+<p>
+  Record ships from United Kingdom. Payment accepted by Credit Card.
+</p>
+<p>View Shipping and Payment Information</p>
 
 <h3>Tracklist</h3>
 <% @release_data['tracklist'].each do |track| %>
