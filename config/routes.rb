@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :conversations
   root 'profiles#index'
 
   devise_for :users, controllers: { registrations: "registrations" }
