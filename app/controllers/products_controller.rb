@@ -5,13 +5,16 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    if params[:filter_by]
+      @products = Product.filter(params[:filter_by])
+    else
+      @products = Product.all.order_products(params[:sort_by])
+    end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-
     if current_user.present?
       @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @product.user_id)
     end

@@ -1,0 +1,13 @@
+<div class="btn-group pull-left">
+  <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <%= link_to 'Newest', products_path(sort_by: 'newest'), class: 'dropdown-item' %>
+    <%= link_to 'Oldest', products_path(sort_by: 'oldest'), class: 'dropdown-item' %>
+    <%= link_to 'Lowest price', products_path(sort_by: 'lowestprice'), class: 'dropdown-item' %>
+    <%= link_to 'Highest price', products_path(sort_by: 'highestprice'), class: 'dropdown-item' %>
+    <%= link_to 'Artist', products_path(sort_by: 'artist'), class: 'dropdown-item' %>
+    <%= link_to 'Release title', products_path(sort_by: 'title'), class: 'dropdown-item' %>
+  </div>
+</div>

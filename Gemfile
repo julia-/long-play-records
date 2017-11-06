@@ -40,6 +40,7 @@ gem 'mini_magick'
 gem 'shrine'
 gem 'httparty'
 gem 'font-awesome-rails'
+gem 'money'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
