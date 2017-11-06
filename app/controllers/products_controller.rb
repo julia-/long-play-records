@@ -11,6 +11,11 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+
+    if current_user.present?
+      @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @product.user_id)
+    end
+
     discogs = @product.discogs_id
 
     discogs_api_key = ENV.fetch('DISCOGS_API_KEY')

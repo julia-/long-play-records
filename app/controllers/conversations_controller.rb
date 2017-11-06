@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:create]
 
   # GET /conversations
   # GET /conversations.json
@@ -10,6 +11,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
+    @messages = Message.where(conversation_id: @conversation)
   end
 
   # GET /conversations/new
@@ -24,11 +26,13 @@ class ConversationsController < ApplicationController
   # POST /conversations
   # POST /conversations.json
   def create
-    @conversation = Conversation.new(conversation_params)
+    @conversation = Conversation.new
+    @conversation.buyer_id = current_user.id
+    @conversation.seller_id = @product.user_id
 
     respond_to do |format|
       if @conversation.save
-        format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
+        format.html { redirect_to conversation_messages_path(@conversation), notice: 'Conversation was successfully created.' }
         format.json { render :show, status: :created, location: @conversation }
       else
         format.html { render :new }
@@ -63,12 +67,16 @@ class ConversationsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_product
+      @product = Product.find(params[:product_id])
+    end
+
     def set_conversation
       @conversation = Conversation.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params.require(:conversation).permit(:buyer_id, :seller_id)
+      params.require(:conversation).permit()
     end
 end

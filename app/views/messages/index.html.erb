@@ -1,31 +1,24 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Messages</h1>
 
-<h1>Messages</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Conversation</th>
-      <th>Sender</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <% if @conversation.buyer == current_user %>
+  <h1><%= @conversation.seller.profile.username %></h1>
+  <% else %>
+  <h1><%= @conversation.buyer.profile.username %></h1>
+  <% end %>
+  <% if !@messages.nil? %>
     <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.conversation %></td>
-        <td><%= message.sender %></td>
-        <td><%= message.content %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div>
+      <p><%= format_time(message.created_at) %></p>
+      <div>
+        <p><%= message.sender.profile.username %></p>
+        <p><%= message.content %></p>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
 
-<br>
+  <%= render 'form', message: @message %>
 
-<%= link_to 'New Message', new_message_path %>
+</div>
