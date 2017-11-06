@@ -1,0 +1,12 @@
+<div class="btn-group pull-right">
+  <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter by
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+    <%= link_to 'Under $10', products_path(filter_by: 'ten'), class: 'dropdown-item' %>
+    <%= link_to 'Under $20', products_path(filter_by: 'twenty'), class: 'dropdown-item' %>
+    <%= link_to 'Under $50', products_path(filter_by: 'fifty'), class: 'dropdown-item' %>
+    <%= link_to 'Under $100', products_path(filter_by: 'hundred'), class: 'dropdown-item' %>
+    <%= link_to 'Clear', products_path, class: 'dropdown-item' %>
+  </div>
+</div>
