@@ -1,14 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Buyer:</strong>
-  <%= @conversation.buyer %>
-</p>
+<% if @conversation.buyer == current_user %>
+  <h1><%= @conversation.seller.profile.username %></h1>
+<% else %>
+  <h1><%= @conversation.buyer.profile.username %></h1>
+<% end %>
 
-<p>
-  <strong>Seller:</strong>
-  <%= @conversation.seller %>
-</p>
+<% @messages.each do |message| %>
+  <div>
+    <p><%= format_time(message.created_at) %></p>
+    <div>
+      <p><%= message.sender.name %></p>
+      <p><%= message.content %></p>
+    </div>
+  </div>
+<% end %>
+<br>
 
-<%= link_to 'Edit', edit_conversation_path(@conversation) %> |
-<%= link_to 'Back', conversations_path %>
+<%= render 'messages/form', message: @message %>

@@ -11,6 +11,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
+    @messages = Message.where(conversation_id: @conversation)
   end
 
   # GET /conversations/new
@@ -28,10 +29,10 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.new
     @conversation.buyer_id = current_user.id
     @conversation.seller_id = @product.user_id
-  
+
     respond_to do |format|
       if @conversation.save
-        format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
+        format.html { redirect_to conversation_messages_path(@conversation), notice: 'Conversation was successfully created.' }
         format.json { render :show, status: :created, location: @conversation }
       else
         format.html { render :new }
