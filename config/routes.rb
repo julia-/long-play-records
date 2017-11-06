@@ -3,9 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: "registrations" }
 
-  resources :products
+  resources :products do
+    resources :conversations
+  end
 
-  resources :profiles
+  resources :profiles do
+    resources :conversations
+  end
 
   resources :artists do
     resources :members
