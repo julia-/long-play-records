@@ -24,7 +24,8 @@
         <% group.each do |product| %>
           <div class="col-3">
             <%= link_to product do %>
-              <h2><%= product.name %></h2>
+              <h2><%= product.title %></h2>
+              <p><%= product.artist %></p>
               <p><%= product.price %></p>
             <% end %>
             <% if current_user == product.user %>
