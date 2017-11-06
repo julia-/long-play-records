@@ -5,10 +5,12 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    if params[:filter_by]
-      @products = Product.filter(params[:filter_by])
+    if params[:query]
+      @products = Product.search(params[:query]).page(params[:page]).per(50)
+    elsif params[:filter_by]
+      @products = Product.filter(params[:filter_by]).page(params[:page]).per(50)
     else
-      @products = Product.all.order_products(params[:sort_by])
+      @products = Product.all.order_products(params[:sort_by]).page(params[:page]).per(50)
     end
   end
 
@@ -114,6 +116,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:price, :postage, :record_condition, :sleeve_condition, :discogs_id, :description, :query)
+      params.require(:product).permit(:price, :postage, :record_condition, :sleeve_condition, :discogs_id, :description)
     end
 end

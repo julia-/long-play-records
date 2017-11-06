@@ -25,5 +25,10 @@
       </div>
     <% end %>
   </div>
-  <%= link_to 'Got a record to sell?', new_product_path %>
+  <div class="pull-right">
+    <%= paginate @products %>
+  </div>
+  <div class="pull-left">
+    <%= link_to 'Got a record to sell?', new_product_path %>
+  </div>
 </div>
