@@ -35,6 +35,25 @@
 </p>
 <p>View Shipping and Payment Information</p>
 
+<% if user_signed_in? %>
+  <% if current_user.id == @product.user_id %>
+    <%= link_to 'View Conversations', profile_conversations_path(@product.user.profile) %> |
+  <% else %>
+
+    <% if @active_conversation %>
+      <!-- If there is an existing conversation, display link to send a message to the host -->
+      <%= link_to 'Contact Seller', new_conversation_message_path(@active_conversation) %> |
+    <% else %>
+      <!-- Otherwise display button to start a conversation with the host -->
+      <%= form_with(model: [@product, Conversation.new], local: true) do |form| %>
+        <div>
+          <%= form.button 'Contact Seller', class: 'btn btn-outline-dark' %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <h3>Tracklist</h3>
 <% @release_data['tracklist'].each do |track| %>
   <ul>
