@@ -1,8 +1,24 @@
 class Product < ApplicationRecord
   belongs_to :user
-  #
-  # scope :under_150000, -> { where("night_fee_cents < ? ", "150000") }
-  # scope :under_200000, -> { where("night_fee_cents < ? ", "200000") }
+
+  def self.search(query)
+    results = where(title_search(query).or(artist_search(query)))
+    if results.empty?
+      all
+    else
+      results
+    end
+  end
+
+  def self.title_search(query)
+    table = Product.arel_table
+    table[:title].matches(query)
+  end
+
+  def self.artist_search(query)
+    table = Product.arel_table
+    table[:artist].matches(query)
+  end
 
   def self.filter(filter_by)
     if filter_by == "ten"
