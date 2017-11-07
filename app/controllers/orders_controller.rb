@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.where(buyer: current_user)
   end
 
   # GET /orders/1
@@ -15,6 +15,8 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @order.product = Product.find(params[:product_id])
+    @amount = @order.product.price_cents + @order.product.postage_cents
   end
 
   # GET /orders/1/edit
@@ -25,16 +27,30 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.buyer = current_user
+    @order.product = Product.find(order_params[:product_id])
+    # Amount in cents
+    @amount = @order.product.price_cents + @order.product.postage_cents
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    customer = Stripe::Customer.create(
+      :email => current_user.email,
+      :source  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @amount,
+      :description => @order.product.title,
+      :currency    => 'aud'
+    )
+
+    @order.charge_identifier = charge.id
+    @order.save
+    redirect_to orders_path
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_order_path(product_id: @order.product.id)
   end
 
   # PATCH/PUT /orders/1
@@ -69,6 +85,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:buyer_id, :product_id, :charge_identifier)
+      params.require(:order).permit(:product_id)
     end
 end
