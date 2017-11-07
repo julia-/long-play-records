@@ -45,8 +45,19 @@ class OrdersController < ApplicationController
     )
 
     @order.charge_identifier = charge.id
+
     @order.save
-    redirect_to orders_path
+
+    buyer_email = current_user.email
+    order_details = {
+        title: @order.product.title,
+        artist: @order.product.artist,
+        total_amount: @amount
+      }
+
+      OrderMailer.order_confirmation(buyer_email, order_details).deliver_now
+
+      redirect_to orders_path
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
