@@ -63,8 +63,13 @@ class ProductsController < ApplicationController
 
     # convert user input for price to cents/integer
     price = product_params[:price_cents]
-    price_in_cents = Product.convert_price_to_cents(price)
+    price_in_cents = Product.convert_to_cents(price)
     @product.price_cents = price_in_cents
+
+    # convert user input for postage to cents/integer
+    postage = product_params[:postage_cents]
+    postage_in_cents = Product.convert_to_cents(postage)
+    @product.postage_cents = postage_in_cents
 
     discogs = @product.discogs_id
 
@@ -121,6 +126,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:price_cents, :postage, :record_condition, :sleeve_condition, :discogs_id, :description)
+      params.require(:product).permit(:price_cents, :postage_cents, :record_condition, :sleeve_condition, :discogs_id, :description)
     end
 end
