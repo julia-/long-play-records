@@ -19,6 +19,7 @@ class ReleasesController < ApplicationController
       response = HTTParty.get("https://api.discogs.com/database/search?release_title=#{query}&artist=#{artist}&format=vinyl&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
 
       @release_data = response['results']
+    end
   end
 
   # GET /releases/1
