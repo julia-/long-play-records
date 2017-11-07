@@ -1,0 +1,43 @@
+<div class="d-flex flex-column bg-form px-3 py-5">
+  <div class="p-2">
+    <h2 class="pb-3">Sign in</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group">
+        <%= f.label :email, class: 'col-form-label font-weight-bold' %>
+        <%= f.email_field :email, class: 'form-control', autofocus: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, class: 'col-form-label font-weight-bold' %>
+        <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
+      </div>
+      <div class="text-center pb-2">
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+        <% end -%>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="form-group">
+          <div class="form-check">
+            <%= f.label :remember_me, class: 'col-form-label form-check-label' do %>
+              <%= f.check_box :remember_me, class: 'form-check-input' %>
+              Remember me
+            <% end %>
+          </div>
+        </div>
+      <% end -%>
+
+      <div class="actions">
+        <%= f.submit 'Sign in', class: 'btn btn-block btn-outline-dark' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="p-3">
+    <h3 class="text-center py-4">New to the store?</h3>
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <%= link_to 'Create account', new_registration_path(resource_name), class: 'btn btn-block btn-outline-dark' %>
+    <% end -%>
+  </div>
+</div>
