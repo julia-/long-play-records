@@ -10,8 +10,8 @@
   <%= image_tag @release_data['thumb'] %>
 </figure>
 
-<p><%= number_to_currency @product.price %></p>
-<p>+ <%= number_to_currency @product.postage %></p>
+<p><%= format_amount(@product.price_cents) %></p>
+<p>+ <%= format_amount(@product.postage_cents) %></p>
 
 <button type="button" name="button">Add to Bag</button>
 
