@@ -1,6 +1,10 @@
 class Product < ApplicationRecord
   belongs_to :user
 
+  def self.convert_price_to_cents(amount)
+    price_in_cents = amount.gsub(/[\D]/, '').to_i
+  end
+
   def self.search(query)
     results = where(title_search(query).or(artist_search(query)))
     if results.empty?

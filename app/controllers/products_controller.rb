@@ -61,6 +61,11 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user_id = current_user.id
 
+    # convert user input for price to cents/integer
+    price = product_params[:price_cents]
+    price_in_cents = Product.convert_price_to_cents(price)
+    @product.price_cents = price_in_cents
+
     discogs = @product.discogs_id
 
     discogs_api_key = ENV.fetch('DISCOGS_API_KEY')
@@ -71,7 +76,7 @@ class ProductsController < ApplicationController
 
     @product.title = response['title']
     @product.artist = response['artists'][0]['name']
-
+    # byebug
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -116,6 +121,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:price, :postage, :record_condition, :sleeve_condition, :discogs_id, :description)
+      params.require(:product).permit(:price_cents, :postage, :record_condition, :sleeve_condition, :discogs_id, :description)
     end
 end
