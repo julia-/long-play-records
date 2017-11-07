@@ -1,6 +1,13 @@
 @import "bootstrap";
 @import "font-awesome";
 
+body {
+  font-size: 18px;
+}
+a {
+  color: #333;
+}
+
 .bg-form {
   background-color: #d3d3d3;
 }
@@ -11,8 +18,18 @@
   border: 1px solid #333;
 }
 
+.form-control:focus {
+  border: 2px solid #333;
+  outline: none;
+  box-shadow: none;
+}
+
 .cover-art {
   border-right: none;
+}
+
+.btn {
+  font-size: 18px;
 }
 
 .btn-outline-dark {
@@ -21,4 +38,25 @@
 
 .breadcrumb {
   background-color: #fff;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h3::before,
+h3::after {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid #333;
+    width: 2em;
+    transform: translateY(-0.25em);
+  }
+
+h3::before {
+  margin-right: 0.5em;
+}
+
+h3::after {
+  margin-left: 0.5em;
 }

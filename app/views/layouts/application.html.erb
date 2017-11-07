@@ -9,8 +9,12 @@
   </head>
 
   <body>
-    <%= render "layouts/navigation" %>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= render "layouts/navigation" %>
+      <div class="container">
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
