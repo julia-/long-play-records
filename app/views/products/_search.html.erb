@@ -5,7 +5,9 @@
       <div class="input-group">
         <%= form.text_field :query, class: 'form-control', autofocus: true, required: true %>
         <span class="input-group-btn">
-          <%= form.submit 'Search', name: nil, class: 'btn btn-outline-dark' %>
+          <%= form.button name: nil, class: 'btn btn-outline-dark' do %>
+            <%= fa_icon 'search' %>
+          <% end %>
         </span>
       </div>
     </div>
