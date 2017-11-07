@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107025516) do
+ActiveRecord::Schema.define(version: 20171107032831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 20171107025516) do
 
   create_table "products", force: :cascade do |t|
     t.string "title"
-    t.float "price"
-    t.float "postage"
     t.string "record_condition"
     t.string "sleeve_condition"
     t.string "discogs_id"
@@ -75,7 +73,6 @@ ActiveRecord::Schema.define(version: 20171107025516) do
     t.integer "postage_cents"
     t.index ["artist"], name: "index_products_on_artist"
     t.index ["discogs_id"], name: "index_products_on_discogs_id"
-    t.index ["price"], name: "index_products_on_price"
     t.index ["price_cents"], name: "index_products_on_price_cents"
     t.index ["title"], name: "index_products_on_title"
     t.index ["user_id"], name: "index_products_on_user_id"
