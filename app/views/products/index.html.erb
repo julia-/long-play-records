@@ -15,7 +15,7 @@
             <%= link_to product do %>
               <h2><%= product.title %></h2>
               <p><%= product.artist %></p>
-              <p><%= format_amount(product.price) %></p>
+              <p><%= format_amount(product.price_cents) %></p>
             <% end %>
             <% if current_user == product.user %>
               <%= link_to 'Edit', edit_product_path(product) %>
