@@ -29,6 +29,7 @@ class ProductsController < ApplicationController
     response = HTTParty.get("https://api.discogs.com/releases/#{discogs}?&key=#{discogs_api_key}&secret=#{discogs_secret_api_key}")
 
     @release_data = response
+    @amount = @product.price_cents + @product.postage_cents
   end
 
   # GET /products/new

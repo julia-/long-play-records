@@ -42,6 +42,7 @@ gem 'httparty'
 gem 'font-awesome-rails'
 gem 'money'
 gem 'kaminari'
+gem 'stripe'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

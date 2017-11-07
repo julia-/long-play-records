@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :products
+  has_many :orders
 end
