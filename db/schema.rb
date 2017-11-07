@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107032831) do
+ActiveRecord::Schema.define(version: 20171107075230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20171107032831) do
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["created_at"], name: "index_messages_on_created_at"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "buyer_id"
+    t.bigint "product_id"
+    t.string "charge_identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -126,6 +136,8 @@ ActiveRecord::Schema.define(version: 20171107032831) do
   add_foreign_key "conversations", "users", column: "seller_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "products", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "releases", "artists"
