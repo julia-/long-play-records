@@ -43,6 +43,7 @@ gem 'font-awesome-rails'
 gem 'money'
 gem 'kaminari'
 gem 'stripe'
+gem 'mailgun-ruby', '~>1.1.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
