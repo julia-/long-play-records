@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :user
 
   def self.convert_to_cents(amount)
-    amount_in_cents = amount.gsub(/[\D]/, '').to_i
+    amount_in_cents = amount.gsub(/[^\d]/, '').to_i
   end
 
   def self.search(query)
