@@ -1,19 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="bg-container">
+  <h2><%= title 'Order', "Order: #{@order.product.title}" %></h2>
 
-<p>
-  <strong>Buyer:</strong>
-  <%= @order.buyer %>
-</p>
+  <h3>Order details</h3>
 
-<p>
-  <strong>Product:</strong>
-  <%= @order.product %>
-</p>
+  <p>
+    <strong>Order</strong>
+    <%= @order.id %>
+  </p>
 
-<p>
-  <strong>Charge identifier:</strong>
-  <%= @order.charge_identifier %>
-</p>
+  <p>
+    <strong>Seller</strong>
+    <%= @order.product.user.profile.username %>
+  </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+  <p>
+    <strong><%= @order.product.title %></strong>
+  </p>
+
+  <p>
+    <strong><%= @order.product.artist %></strong>
+  </p>
+
+  <h3>Shipping address</h3>
+  <p></p>
+
+  <% if current_user == @order.product.user %>
+    <%= link_to 'View Conversations', profile_conversations_path(@order.product.user.profile) %>
+  <% else %>
+    <% if @active_conversation %>
+      <!-- If there is an existing conversation, display button to send a message to the host -->
+      <%= link_to 'Contact Seller', new_conversation_message_path(@active_conversation), class: 'btn btn-outline-dark' %> |
+    <% else %>
+      <!-- Otherwise display button to start a conversation with the host -->
+      <%= form_with(model: @conversation, local: true) do |form| %>
+        <%#= form.hidden_field :product_id, value: @order.product_id %>
+        <div class="actions">
+          <%= form.button 'Contact Seller', class: 'btn btn-outline-dark' %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
