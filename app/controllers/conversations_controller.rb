@@ -28,7 +28,7 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new
     @conversation.buyer_id = current_user.id
-    @conversation.seller_id = @product.user_id
+    @conversation.seller_id = @product.id
 
     respond_to do |format|
       if @conversation.save
@@ -77,6 +77,6 @@ class ConversationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params.require(:conversation).permit()
+      params.require(:conversation).permit(:seller_id)
     end
 end

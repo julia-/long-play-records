@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     @conversation = Conversation.new
 
     if current_user.present?
-      @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @product.user_id)
+      @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @product.id)
     end
 
     discogs = @product.discogs_id
