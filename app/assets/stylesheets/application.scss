@@ -60,3 +60,13 @@ h3::before {
 h3::after {
   margin-left: 0.5em;
 }
+
+.footer {
+  width: 100%;
+  min-height: 20vh;
+  height: auto;
+  padding-top: 15px;
+  background-color: #333;
+  color: #fff;
+  margin: 0;
+}
