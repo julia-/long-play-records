@@ -86,7 +86,8 @@ class ProductsController < ApplicationController
 
     @product.title = response['title']
     @product.artist = response['artists'][0]['name']
-    # byebug
+    @product.cover_image = response['images'][0]['resource_url']
+
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }

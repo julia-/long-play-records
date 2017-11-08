@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108104741) do
+ActiveRecord::Schema.define(version: 20171108132512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20171108104741) do
     t.string "artist"
     t.integer "price_cents"
     t.integer "postage_cents"
+    t.string "cover_image"
     t.index ["artist"], name: "index_products_on_artist"
     t.index ["discogs_id"], name: "index_products_on_discogs_id"
     t.index ["price_cents"], name: "index_products_on_price_cents"
@@ -132,6 +133,15 @@ ActiveRecord::Schema.define(version: 20171108104741) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_wishlists_on_product_id"
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "conversations", "products", column: "seller_id"
   add_foreign_key "conversations", "users", column: "buyer_id"
   add_foreign_key "messages", "conversations"
@@ -141,4 +151,6 @@ ActiveRecord::Schema.define(version: 20171108104741) do
   add_foreign_key "products", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "releases", "artists"
+  add_foreign_key "wishlists", "products"
+  add_foreign_key "wishlists", "users"
 end
