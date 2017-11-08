@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <% if @conversation.buyer == current_user %>
-  <h1><%= @conversation.seller.profile.username %></h1>
+  <h2><%= @conversation.seller.profile.username %></h2>
 <% else %>
-  <h1><%= @conversation.buyer.profile.username %></h1>
+  <h2><%= @conversation.buyer.profile.username %></h2>
 <% end %>
 
 <% @messages.each do |message| %>
