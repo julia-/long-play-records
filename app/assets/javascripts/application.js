@@ -16,3 +16,4 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+$(".alert").alert('close')

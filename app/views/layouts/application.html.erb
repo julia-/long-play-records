@@ -10,10 +10,28 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <%= render "layouts/navigation" %>
+    <%= render "layouts/navigation" %>
+    <div class="container">
+      <div class="d-flex flex-column">
+        <div class="p-2">
+          <% if notice %>
+            <div id="notice" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+              <%= notice %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% elsif alert %>
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+              <%= alert %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
       <div class="container">
-        <p class="alert"><%= alert %></p>
         <%= yield %>
       </div>
     </div>
