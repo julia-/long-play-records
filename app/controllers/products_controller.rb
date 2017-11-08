@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
 
     @release_data = response
     @amount = @product.price_cents + @product.postage_cents
+    @order = Order.new(product_id: @product.id)
   end
 
   # GET /products/new
