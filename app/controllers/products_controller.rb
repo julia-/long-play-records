@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @conversation = Conversation.new
+
     if current_user.present?
       @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @product.user_id)
     end
@@ -30,6 +32,7 @@ class ProductsController < ApplicationController
 
     @release_data = response
     @amount = @product.price_cents + @product.postage_cents
+
     @order = Order.new(product_id: @product.id)
   end
 

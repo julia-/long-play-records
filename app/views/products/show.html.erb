@@ -43,7 +43,7 @@
       <%= link_to 'Contact Seller', new_conversation_message_path(@active_conversation) %> |
     <% else %>
       <!-- Otherwise display button to start a conversation with the host -->
-      <%= form_with(model: [@product, Conversation.new], local: true) do |form| %>
+      <%= form_with(model: [@product, @conversation], local: true) do |form| %>
         <div>
           <%= form.button 'Contact Seller', class: 'btn btn-outline-dark' %>
         </div>
