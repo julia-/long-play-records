@@ -1,80 +1,114 @@
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page"><%= link_to 'Home', products_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @product.title %></li>
+  </ol>
+</nav>
+
 <div class="bg-container">
-  <h2><%= title "#{@release_data['title']}" %></h2>
-  <h3><%= @release_data['artists'][0]['name'] %></h3>
-  <p>
-    <%= @release_data['labels'][0]['name'] %> <%= @release_data['country'] %> (<%= @release_data['year'] %>)
-  </p>
+  <div class="d-flex flex-column py-5 m-auto">
+    <div class="py-2">
+      <h2><%= title "#{@product.title}" %></h2>
+      <h3><%= @product.artist %></h3>
+      <p>
+        <%= @release_data['labels'][0]['name'] %> <%= @release_data['country'] %> (<%= @release_data['year'] %>)
+      </p>
+    </div>
+  </div>
 
-  <figure>
-    <%= image_tag @release_data['thumb'] %>
-  </figure>
+  <div class="flex-column flex-md-row justify-content-md-around m-auto">
+    <div class="py-2">
+      <figure>
+        <%= image_tag @product.cover_image, class: 'cover-image' %>
+      </figure>
+    </div>
+    <div class="py-2">
+      <p><%= format_amount(@product.price_cents) %><br>
+      <small class="text-muted">+ <%= format_amount(@product.postage_cents) %> (postage)</small>
+    </p>
 
-  <p><%= format_amount(@product.price_cents) %></p>
-  <p>+ <%= format_amount(@product.postage_cents) %></p>
+      <%= render 'buy_form' %>
+    </div>
+  </div>
 
-  <%= render 'buy_form' %>
+  <div class="flex-column flex-md-row justify-content-md-around m-auto">
+    <div class="py-2">
+      <h3>Description</h3>
+      <p><%= simple_format @product.description %></p>
+    </div>
+    <div class="py-2">
+      <h3>Condition</h3>
+      <dl>
+        <dt>Record condition</dt>
+        <dd><%= @product.record_condition %></dd>
+        <dt>Sleeve condition</dt>
+        <dd><%= @product.sleeve_condition %></dd>
+      </dl>
+    </div>
+  </div>
 
-  <h3>Description</h3>
-  <p><%= @product.description %></p>
-
-  <h3>Condition</h3>
-  <dl>
-    <dt>Record condition</dt>
-    <dd><%= @product.record_condition %></dd>
-    <dt>Sleeve condition</dt>
-    <dd><%= @product.sleeve_condition %></dd>
-  </dl>
-
-  <h3>Seller</h3>
-  <p><strong><%= link_to @product.user.profile.username, profile_path(@product.user.profile) %></strong></p>
-  <p>98.3% | 356 reviews</p>
-  <p>Save seller</p>
-  <p>
-    Record ships from United Kingdom. Payment accepted by Credit Card.
-  </p>
-  <p>View Shipping and Payment Information</p>
-
-  <% if user_signed_in? %>
-    <% if current_user.id == @product.user_id %>
-      <%= link_to 'View Conversations', product_conversations_path(@product), class: 'btn btn-block btn-outline-dark' %>
-    <% else %>
-
-      <% if @active_conversation %>
-        <!-- If there is an existing conversation, display link to send a message to the host -->
-        <%= link_to 'Contact Seller', conversation_messages_path(@active_conversation), class: 'btn btn-block btn-outline-dark' %>
-      <% else %>
-        <!-- Otherwise display button to start a conversation with the host -->
-        <%= form_with(model: [@product, @conversation], local: true) do |form| %>
-          <div>
-            <%= form.button 'Contact Seller', class: 'btn btn-outline-dark' %>
-          </div>
+  <div class="flex-column flex-md-row justify-content-md-around m-auto">
+    <div class="py-2">
+      <h3>Seller</h3>
+      <% if user_signed_in? %>
+        <% if current_user.id == @product.user_id %>
+          <p>
+            <strong><%= link_to @product.user.profile.username, profile_path(@product.user.profile) %></strong>
+            <small class="text-muted">(this is you)</small>
+          </p>
+          <p>98.3% | 356 reviews</p>
+          <p>
+            Record ships from Victoria, Australia. Payment accepted by Credit Card.
+          </p>
+          <%= link_to 'Edit product', edit_product_path(@product), class: 'btn btn-block btn-outline-dark' %>
+        <% else %>
+          <p>
+            <strong><%= link_to @product.user.profile.username, profile_path(@product.user.profile) %></strong>
+          </p>
+          <p>98.3% | 356 reviews</p>
+          <p>Save seller</p>
+          <p>
+            Record ships from Victoria, Australia. Payment accepted by Credit Card.
+          </p>
         <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
+    <div class="py-2">
+      <% if user_signed_in? %>
+        <% if current_user.id == @product.user_id %>
+          <%= link_to 'View Conversations', product_conversations_path(@product), class: 'btn btn-block btn-outline-dark' %>
+        <% else %>
+          <% if @active_conversation %>
+            <!-- If there is an existing conversation, display link to send a message to the host -->
+            <%= link_to 'Contact Seller', conversation_messages_path(@active_conversation), class: 'btn btn-block btn-outline-dark' %>
+          <% else %>
+            <!-- Otherwise display button to start a conversation with the host -->
+            <%= form_with(model: [@product, @conversation], local: true) do |form| %>
+              <%= form.button 'Contact Seller', class: 'btn btn-outline-dark' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
-  <h3>Tracklist</h3>
-  <% @release_data['tracklist'].each do |track| %>
-    <ul>
-      <li><%= track['title'] %> (<%= track['duration'] %>)</li>
-    </ul>
-  <% end %>
+  <div class="d-flex flex-column m-auto">
+    <div class="py-2">
+      <h3>Tracklist</h3>
+      <% @release_data['tracklist'].each do |track| %>
+        <ul>
+          <li><%= track['position'] %> - <%= track['title'] %> <%= "(#{track['duration']})" if !track['duration'].empty? %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
 
-  <h3>Shipping &amp; Postage</h3>
-  <p>Orders will be cancelled if payment is not received within 14 days.</p>
+  <div class="d-flex flex-column m-auto">
+    <div class="py-2">
+      <h3>Shipping &amp; Postage</h3>
+      <p>Orders will be cancelled if payment is not received within 14 days.</p>
 
-  <h4>UK Postage</h4>
-  <p>1st LP or 12" or 10"- £3.50 (any extra will be another £1.00)</p>
-
-  <h4>Europe Postage</h4>
-  <p>1st LP or 12" or 10"- £6.50 (any extra will be another £2.00)</p>
-
-  <h4>International Postage</h4>
-  <p>1st LP or 12" or 10"- £9.99 (any extra will be another £3.00)</p>
-
-  <% if user_signed_in? %>
-    <% if current_user.id == @product.user_id %>
-      <%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-block btn-outline-dark' %>
-    <% end %>
-  <% end %>
+      <p>Flat rate postage.</p>
+    </div>
+  </div>
 </div>

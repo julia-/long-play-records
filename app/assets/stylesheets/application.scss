@@ -4,8 +4,19 @@
 body {
   font-size: 18px;
 }
+
+.flex-column {
+  max-width: 80%;
+}
+
 a {
   color: #333;
+}
+
+a:hover {
+  text-decoration: underline;
+  background: #333;
+  color : #f2f2f2;
 }
 
 .bg-container {
@@ -28,6 +39,11 @@ a {
   border-right: none;
 }
 
+.cover-image {
+  max-width: 100%;
+  height: auto;
+}
+
 .btn {
   font-size: 18px;
 }
@@ -40,26 +56,9 @@ a {
   background-color: #fff;
 }
 
-// h3 {
-//   font-size: 20px;
-// }
-//
-// h3::before,
-// h3::after {
-//     display: inline-block;
-//     content: "";
-//     border-top: 1px solid #333;
-//     width: 2em;
-//     transform: translateY(-0.25em);
-// }
-
-// h3::before {
-//   margin-right: 0.5em;
-// }
-//
-// h3::after {
-//   margin-left: 0.5em;
-// }
+.stripe-button-el {
+  width: 100%;
+}
 
 .footer {
   width: 100%;

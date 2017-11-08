@@ -1,36 +1,42 @@
-<div class="container">
-  <h2><%= title 'Records', 'Records for sale' %></h2>
+<div class="d-flex flex-column pt-3 m-auto">
+  <div class="py-2">
+    <h2><%= title 'Records', 'Records for sale' %></h2>
+  </div>
+</div>
 
-  <%= render 'search' %>
+<div class="d-flex flex-column py-2 m-auto">
+  <div class="py-2">
+    <%= render 'search' %>
+  </div>
+</div>
 
+<div class="d-flex flex-row justify-content-around p-3 m-auto">
   <%= render 'sort' %>
-
   <%= render 'filter' %>
+</div>
 
-  <div class="container">
-    <% @products.in_groups_of(4, false) do |group| %>
-      <div class="row">
-        <% group.each do |product| %>
-          <% if !product.order %>
-            <div class="col-3">
-              <%= link_to product do %>
-                <h2><%= product.title %></h2>
-                <p><%= product.artist %></p>
-                <p><%= format_amount(product.price_cents) %></p>
-              <% end %>
-              <% if current_user == product.user %>
-                <%= link_to 'Edit', edit_product_path(product) %>
-              <% end %>
-            </div>
-            <% end %>
+<div class="d-flex flex-column flex-md-row justify-content-md-around m-auto">
+  <% @products.each do |product| %>
+    <% if !product.order %>
+      <div class="p-2">
+        <%= link_to product do %>
+          <figure>
+            <%= image_tag product.cover_image, class: 'cover-image' %>
+          </figure>
+          <h3><%= product.title %></h3>
+          <small><%= product.artist %></small>
+          <small><%= format_amount(product.price_cents) %></small>
         <% end %>
       </div>
     <% end %>
+  <% end %>
+</div>
+
+<div class="d-flex flex-column flex-md-row justify-content-md-around m-auto">
+  <div class="py-2">
+    <%= link_to 'Got a record to sell?', new_product_path, class: 'btn btn-block btn-outline-dark' %>
   </div>
-  <div class="pull-right">
+  <div class="py-2">
     <%= paginate @products %>
-  </div>
-  <div class="pull-left">
-    <%= link_to 'Got a record to sell?', new_product_path %>
   </div>
 </div>
