@@ -1,6 +1,6 @@
 <div class="container">
   <% if @conversation.buyer == current_user %>
-    <h2><%= title "#{@conversation.seller.profile.username}" %></h2>
+    <h2><%= title "#{@conversation.seller.user.profile.username}" %></h2>
   <% else %>
     <h2><%= title "#{@conversation.buyer.profile.username}" %></h2>
   <% end %>

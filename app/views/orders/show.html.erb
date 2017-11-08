@@ -29,11 +29,10 @@
   <% else %>
     <% if @active_conversation %>
       <!-- If there is an existing conversation, display button to send a message to the host -->
-      <%= link_to 'Contact Seller', new_conversation_message_path(@active_conversation), class: 'btn btn-outline-dark' %> |
+      <%= link_to 'Contact Seller', conversation_messages_path(@active_conversation) %>
     <% else %>
       <!-- Otherwise display button to start a conversation with the host -->
-      <%= form_with(model: @conversation, local: true) do |form| %>
-        <%#= form.hidden_field :product_id, value: @order.product_id %>
+      <%= form_with(model: [@order.product, @conversation], local: true) do |form| %>
         <div class="actions">
           <%= form.button 'Contact Seller', class: 'btn btn-outline-dark' %>
         </div>
