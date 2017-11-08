@@ -15,11 +15,13 @@ class Product < ApplicationRecord
     end
   end
 
+  # does a case-insensitive check to see if query matches artist column
   def self.title_search(query)
     table = Product.arel_table
     table[:title].matches(query)
   end
 
+  # does a case-insensitive check to see if query matches artist column
   def self.artist_search(query)
     table = Product.arel_table
     table[:artist].matches(query)
@@ -27,15 +29,15 @@ class Product < ApplicationRecord
 
   def self.filter(filter_by)
     if filter_by == "ten"
-      where("price < ? ", 10)
+      where("price_cents < ? ", 1000)
     elsif filter_by == "twenty"
-      where("price < ? ", 20)
+      where("price_cents < ? ", 2000)
     elsif filter_by == "fifty"
-      where("price < ? ", 50)
+      where("price_cents < ? ", 5000)
     elsif filter_by == "hundred"
-      where("price < ? ", 100)
+      where("price_cents < ? ", 10000)
     else
-      where("price > ? ", 0)
+      where("price_cents > ? ", 0)
     end
   end
 
@@ -43,9 +45,9 @@ class Product < ApplicationRecord
     if sort_order == "newest" || sort_order.blank?
       order(created_at: :desc)
     elsif sort_order == "lowestprice"
-      order(price: :asc)
+      order(price_cents: :asc)
     elsif sort_order == "highestprice"
-      order(price: :desc)
+      order(price_cents: :desc)
     elsif sort_order == "artist"
       order(artist: :asc)
     elsif sort_order == "title"
