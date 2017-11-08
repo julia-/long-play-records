@@ -10,6 +10,12 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    if current_user.present?
+      @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @order.product.user_id)
+    end
+
+    seller = @order.product.user
+    @conversation = Conversation.new(seller_id: seller)
   end
 
   # GET /orders/new
@@ -57,7 +63,7 @@ class OrdersController < ApplicationController
       OrderMailer.order_confirmation(buyer_email, order_details).deliver_now
 
       redirect_to order_path(@order)
-      
+
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_order_path(product_id: @order.product.id)
