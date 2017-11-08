@@ -11,10 +11,10 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     if current_user.present?
-      @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @order.product.user_id)
+      @active_conversation = Conversation.find_by(buyer_id: current_user.id, seller_id: @order.product)
     end
 
-    seller = @order.product.user
+    seller = @order.product
     @conversation = Conversation.new(seller_id: seller)
   end
 
