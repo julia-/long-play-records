@@ -47,7 +47,6 @@ class OrdersController < ApplicationController
     @order.charge_identifier = charge.id
 
     @order.save
-
     buyer_email = current_user.email
     order_details = {
         title: @order.product.title,
@@ -57,8 +56,8 @@ class OrdersController < ApplicationController
 
       OrderMailer.order_confirmation(buyer_email, order_details).deliver_now
 
-      redirect_to orders_path
-
+      redirect_to order_path(@order)
+      
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_order_path(product_id: @order.product.id)

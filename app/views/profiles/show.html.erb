@@ -1,24 +1,27 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
+<div class="bg-container">
+  <div class="d-flex flex-column p-3">
+    <div class="p-2">
       <h2><%= title 'Profile' %></h2>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-3">
+  
+  <!-- Account section -->
+  <div class="d-flex flex-row justify-content-sm-around justify-content-between p-3">
+    <div class="p-2">
       <h3>Account</h3>
     </div>
-    <div class="col-md-3">
-      <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-outline-dark' %>
+    <div class="p-2">
+      <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-block btn-outline-dark' %>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-3">
+
+  <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
+    <div class="p-2">
       <figure>
         <%= image_tag @profile.image_url(:thumb), alt: "#{@profile.username}"  %>
       </figure>
     </div>
-    <div class="col-md-3">
+    <div class="p-2">
       <p>
         <strong>Username</strong>
         <%= @profile.username %>
@@ -29,75 +32,123 @@
         <%= @profile.first_name %> <%= @profile.last_name %>
       </p>
 
-      <p><strong>Buyer rating</strong></p>
+      <p>
+        <strong>Buyer rating</strong>
+      </p>
       <%= link_to 'Change password', edit_user_registration_path(current_user), class: 'font-weight-bold' %>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-3">
+
+  <!-- Addresses section -->
+  <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
+    <div class="p-2">
       <h4>Billing address</h4>
     </div>
-    <div class="col-md-3">
+
+    <div class="p-2">
       <h4>Shipping address</h4>
     </div>
   </div>
+
+  <!-- Store details section -->
   <% if !@profile.user.products.empty? %>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
+    <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
+      <div class="p-2">
         <h3>Store details</h3>
-        <p>Coming soon</p>
+        <p>
+          <strong>Username</strong>
+          <%= @profile.username %>
+        </p>
+        <p><strong>Total inventory</strong>
+          <%= @profile.user.products.count - @profile.user.products.orders.count %>
+        </p>
+      </div>
+      <div class="p-2">
+        <%= link_to 'View store', root_path, class: 'btn btn-block btn-outline-dark' %>
+        <%= link_to 'Add product', new_product_path, class: 'btn btn-block btn-outline-dark' %>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
+
+    <!-- Store orders section -->
+    <div class="d-flex flex-column p-3">
+      <div class="p-2">
         <h3>Store orders</h3>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h3>Store inventory</h3>
-        <%= link_to 'Add product', new_product_path %>
-        <% @profile.user.products.in_groups_of(4, false) do |group| %>
-          <div class="row">
-            <% group.each do |product| %>
-              <div class="col-3">
-                <%= link_to product do %>
-                  <h2><%= product.name %></h2>
-                  <p><%= product.price %></p>
-                <% end %>
-                <% if current_user == product.user %>
-                  <%= link_to 'Edit', edit_product_path(product) %>
-                <% end %>
-              </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
+      <% @profile.user.products.each do |product| %>
+        <% if product.order %>
+          <div class="p-2">
+            <%= link_to order_path(product.order) do %>
+              <h4><%= product.title %></h4>
+              <p><%= format_amount(product.price_cents) %></p>
             <% end %>
           </div>
         <% end %>
+      <% end %>
+    </div>
+
+    <!-- Store inventory section -->
+    <div class="d-flex flex-column p-3">
+      <div class="p-2">
+        <h3>Store inventory</h3>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
+
+    <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
+      <% @profile.user.products.each do |product| %>
+        <% if !product.order %>
+          <div class="p-2">
+            <%= link_to product do %>
+              <h4><%= product.title %></h4>
+              <p><%= format_amount(product.price_cents) %></p>
+            <% end %>
+            <% if current_user == product.user %>
+              <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-block btn-outline-dark' %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end  %>
+
+  <!-- Order history (sellers is your purchases) section -->
+  <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
+    <div class="p-2">
+      <% if @profile.user.products  %>
         <h3>Your purchases</h3>
-      </div>
-    </div>
-  <% else %>
-  <div class="row justify-content-center">
-      <div class="col-md-6">
+      <% else %>
         <h3>Order History</h3>
-        <p>Coming soon</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
+    <% @orders.each do |order| %>
+      <div class="p-2">
+        <p>Title <%= order.product.title %></p>
+        <p>Artist <%= order.product.artist %></p>
+        <p>Price <%= format_amount(order.product.price_cents) %></p>
+        <p>Ordered <%= order.created_at %></p>
       </div>
     <% end %>
   </div>
-
-  <div class="row justify-content-center">
-    <div class="col-md-6">
+  
+  <!-- Wishlist section -->
+  <div class="d-flex flex-column p-3">
+    <div class="p-2">
       <h3>Wishlist</h3>
       <p>You currently have not yet saved any products to your wishlist</p>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-6">
+
+  <!-- Saved sellers -->
+  <div class="d-flex flex-column p-3">
+    <div class="p-2">
       <h3>Saved sellers</h3>
       <p>You currently do not have any saved sellers</p>
     </div>
   </div>
+
 </div>

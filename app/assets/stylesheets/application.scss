@@ -40,26 +40,26 @@ a {
   background-color: #fff;
 }
 
-h3 {
-  font-size: 20px;
-}
+// h3 {
+//   font-size: 20px;
+// }
+//
+// h3::before,
+// h3::after {
+//     display: inline-block;
+//     content: "";
+//     border-top: 1px solid #333;
+//     width: 2em;
+//     transform: translateY(-0.25em);
+// }
 
-h3::before,
-h3::after {
-    display: inline-block;
-    content: "";
-    border-top: 1px solid #333;
-    width: 2em;
-    transform: translateY(-0.25em);
-  }
-
-h3::before {
-  margin-right: 0.5em;
-}
-
-h3::after {
-  margin-left: 0.5em;
-}
+// h3::before {
+//   margin-right: 0.5em;
+// }
+//
+// h3::after {
+//   margin-left: 0.5em;
+// }
 
 .footer {
   width: 100%;

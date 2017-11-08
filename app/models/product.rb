@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :user
+  has_one :order
 
   def self.convert_to_cents(amount)
     amount_in_cents = amount.gsub(/[^\d]/, '').to_i
