@@ -1,5 +1,4 @@
 # Long Play Records
-
 A two-sided marketplace to buy and sell secondhand vinyl records.
 
 ![logo](docs/logo.png)
@@ -32,6 +31,7 @@ A two-sided marketplace to buy and sell secondhand vinyl records.
   - [Technologies](#technologies)
   - [APIs](#apis)
   - [Gems](#gems)
+- [Challenges and final thoughts](#challenges-and-final-thoughts)
 - [Acknowledgments](#acknowledgments)
 
 ## Getting started
@@ -82,13 +82,23 @@ Open your chosen browser and navigate to http://localhost:3000.
 You are to design, build, deploy and present a Ruby on Rails application. You must build a two sided marketplace. This app will cater to two markets that your app brings together.
 
 ### Problem
-In recents years vinyl records have dramatically increased in popularity with a 25 year high in sales reached in 2016 - even outselling digital music. Many new releases are available on vinyl and even older releases are now also being reissued on vinyl. With the increased popularity of vinyl and related events such as Record Store Day and record fairs, there is a greater demand for online shopfronts to facilitate the buying and selling of new, used and collectible records. With the exception of large, international sites such as Discogs, or non-specialist sites such as eBay there is little in the way of sites that focus on the secondhand and collectible record trade.
+In recents years vinyl records have dramatically increased in popularity with a 25 year high in sales reached in 2016 - even outselling digital music. Many new releases are available on vinyl and even older releases are now being reissued on vinyl. With the increased popularity of vinyl and related events such as Record Store Day and record fairs, there is a greater demand for online shopfronts to facilitate the buying and selling of new, used and collectible records. With the exception of large, international sites such as Discogs, or non-specialist sites such as eBay there is little in the way of sites that focus on the secondhand and collectible record trade.
 
 ### Solution
 Develop a two-sided marketplace rails application to enable people to buy and sell secondhand vinyl records.
 
 ## Planning
-To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information
+I first started thinking about who would be my audience and then from there I commenced creating user stories for sellers, buyers and buyer/sellers.
+
+I used these user stories to help define my data models and attributes.
+
+To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information about releases to ensure information was correct due there being multiple versions for most releases.
+
+I decided to go with Discogs API as the database made available under the CC0 No Rights Reserved license.
+
+I played around with the API to help identify any other models and attributes that would be needed.
+
+I used a combination of trello and paper and pen to list and to breakdown tasks that I needed to complete for the next two weeks.
 
 ### Audience
 - Music lovers
@@ -100,6 +110,7 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 
 ### User stories
 #### Buyer
+```markdown
 1. In order to find all records by a specific artist, as a fan, I want to be able to search by an artist’s name.
 2. In order to find all records an artist has made (including associated acts), as a fan, I want to see a list of all records the artist has been involved with when searching for the artist.
 3. In order to find records under $20, as a buyer, I want to be able to filter by price.
@@ -129,8 +140,10 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 27. In order to see what I've previously bought, as a buyer, I want to be able to see past orders.
 27. In order to see what I've previously bought, as a buyer, I want to be able to see past orders.
 28. In order to know when new stock has been added, as a buyer, I want to be alerted by an email notification.
+```
 
 #### Seller
+```markdown
 1. In order to quickly add items to my inventory, as a seller, I want to be able to populate fields through a database.
 2. In order to provide buyers with as much information about the record, as a seller, I want to be able to add a description and information about the condition, price, postage, returns for the record.
 3. In order to make sure I process a new order asap, as a seller, I want to be notified when new orders has been placed.
@@ -141,13 +154,16 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 8. In order to organise the records I am selling, as a seller, I want to be able to assign genres/styles to each record.
 9. In order to receive payment for each sale, as a seller, I want payments to be done through stripe, PayPal.
 10. In order to promote certain records, as a seller, I want to be able feature items.
+```
 
 #### Buyer/Seller
+```markdown
 1. In order to sell and buy records, as a collector, I want to use the same account for selling and buying.
 2. In order to keep my buying and selling separate, as a collector, I want to have different views for selling and buying.
 
 ### Entity Relationship Diagram
 During development I revised the ERD by removing several models and instead, displaying data from the Discogs API and only saving the necessary data from API calls.
+```
 
 - [ERD v1](https://dbdesigner.net/designer/schema/125555)
 - [ERD v2](https://dbdesigner.net/designer/schema/122698)
@@ -172,7 +188,7 @@ Most sites that I reviewed had a dated and chaotic design that was distracting a
 
 I draw inspiration in my designs from [Banquet Records](https://www.banquetrecords.com) and in particular [Boomkat records](https://boomkat.com) which has a simple, understated and modern design. Boomkat's user experience is intuitive as the content is displayed progressively. The site does not overwhelm the visitor with content but at the same time was able to provide comprehensive information for each item.
 
-I wanted to create an experience that featured the cover art to gain the visitor's attention. I wanted the design to be reminiscent of a record store with the walls lined with records
+I wanted the design to be reminiscent of a record store with the walls lined with records. I kept my design minimal and used only used greys and whites to not take away from the cover art.
 
 ### Moodboard
 
@@ -253,6 +269,11 @@ gem 'stripe'
 gem 'mailgun-ruby', '~>1.1.6'
 gem 'meta-tags'
 ```
+## Challenges and final thoughts
+- I found working out the data models and attributes challenging.
+- Working with an API was a time consuming but rewarding process - difficult working out what I should save and what I can't.
+- Discovering that Discogs API doesn't let you download the images.
+- I usually write custom CSS but decided to use Bootstrap. As I'm not that familiar with it this ended up being a mistake.
 
 ## Acknowledgments
 [Discogs API](https://www.discogs.com/developers)
