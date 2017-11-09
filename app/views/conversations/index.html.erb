@@ -1,27 +1,24 @@
 <h2><%= title 'Inbox' %></h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Buyer</th>
-      <th>Seller</th>
-      <th colspan="3"></th>
+      <th scope="col">Conversation</th>
+      <th scope="col">About</th>
+      <th scope="col">View</th>
     </tr>
   </thead>
-
   <tbody>
     <% @conversations.each do |conversation| %>
       <tr>
-        <td><%= conversation.buyer %></td>
-        <td><%= conversation.seller %></td>
-        <td><%= link_to 'Show', conversation %></td>
-        <td><%= link_to 'Edit', edit_conversation_path(conversation) %></td>
-        <td><%= link_to 'Destroy', conversation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user == conversation.buyer %>
+          <td><%= conversation.seller.user.profile.username %></td>
+        <% else %>
+          <td><%= conversation.buyer.profile.username %></td>
+        <% end %>
+        <td><%= conversation.seller.title %></td>
+        <td><%= link_to 'View conversation', conversation_messages_path(conversation) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Conversation', new_conversation_path %>
