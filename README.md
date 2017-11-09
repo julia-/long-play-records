@@ -1,5 +1,9 @@
 # Long Play Records Marketplace
 
+## Table of Contents
+- [Problem](#problem)
+- [Solution](#solution)
+
 ## Problem
 Buy and sell secondhand vinyl records.
 
