@@ -1,22 +1,30 @@
-<div class="container">
-  <% if @conversation.buyer == current_user %>
-    <h2><%= title "#{@conversation.seller.user.profile.username}" %></h2>
-  <% else %>
-    <h2><%= title "#{@conversation.buyer.profile.username}" %></h2>
-  <% end %>
+<div class="bg-container">
+  <div class="d-flex flex-column pt-5 m-auto">
+    <div class="py-2">
+      <% if @conversation.buyer == current_user %>
+        <h2><%= title "#{@conversation.seller.user.profile.username}" %></h2>
+      <% else %>
+        <h2><%= title "#{@conversation.buyer.profile.username}" %></h2>
+      <% end %>
+    </div>
+  </div>
 
   <% if !@messages.nil? %>
-    <% @messages.each do |message| %>
-    <div>
-      <p><%= format_time(message.created_at) %></p>
-      <div>
-        <p><%= message.sender.profile.username %></p>
-        <p><%= message.content %></p>
-      </div>
+    <div class="d-flex flex-column m-auto">
+      <% @messages.each do |message| %>
+        <div class="message-box p-2 mb-2">
+          <small class="text-muted"><%= format_time(message.created_at) %></small>
+          <p class="font-weight-bold"><%= message.sender.profile.username %></p>
+          <p><%= message.content %></p>
+        </div>
+      <% end %>
     </div>
-    <% end %>
   <% end %>
 
-  <%= render 'form', message: @message %>
-
+  
+  <div class="d-flex flex-column pb-5 m-auto">
+    <div class="py-2">
+      <%= render 'form', message: @message %>
+    </div>
+  </div>
 </div>
