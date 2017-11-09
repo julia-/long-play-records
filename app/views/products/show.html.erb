@@ -26,8 +26,13 @@
       <p><%= format_amount(@product.price_cents) %><br>
       <small class="text-muted">+ <%= format_amount(@product.postage_cents) %> (postage)</small>
     </p>
-
-      <%= render 'buy_form' %>
+      <% if user_signed_in? %>
+        <%= render 'buy_form' %>
+      <% else %>
+        Want to buy this record?
+        <%= link_to'Sign up', new_user_session_path, class: 'btn btn-outline-dark' %> or
+        <%= link_to 'Sign in', new_user_registration_path, class: 'btn btn-outline-dark' %>
+      <% end %>
     </div>
   </div>
 

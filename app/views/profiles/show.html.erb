@@ -127,10 +127,10 @@
   <div class="d-flex flex-column flex-md-row justify-content-md-around p-3">
     <% @orders.each do |order| %>
       <div class="p-2">
-        <p>Title <%= order.product.title %></p>
-        <p>Artist <%= order.product.artist %></p>
-        <p>Price <%= format_amount(order.product.price_cents) %></p>
-        <p>Ordered <%= order.created_at %></p>
+        <p><strong>Title</strong> <%= order.product.title %></p>
+        <p><strong>Artist</strong> <%= order.product.artist %></p>
+        <p><strong>Price</strong> <%= format_amount(order.product.price_cents) %></p>
+        <p><strong>Ordered</strong> <%= format_date(order.created_at) %></p>
       </div>
     <% end %>
   </div>

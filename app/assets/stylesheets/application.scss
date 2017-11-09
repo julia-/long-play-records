@@ -60,12 +60,34 @@ a:hover {
   width: 100%;
 }
 
-.footer {
+footer {
+  display: inline-block;
+  position: absolute;
+  bottom: -1000;
   width: 100%;
   min-height: 20vh;
   height: auto;
-  padding-top: 15px;
+  margin-top: 3em;
+  margin-bottom: 0;
+  padding-top: 0.5em;
   background-color: #333;
   color: #fff;
-  margin: 0;
+}
+
+footer h2 {
+  margin: 1em;
+  padding-left: 2em;
+}
+
+ul {
+  list-style: none; 
+}
+
+.footer-links {
+  padding-left: 3.2em;
+  margin: 2em;
+}
+
+.footer-links a {
+  color: #f2f2f2;
 }
