@@ -5,6 +5,9 @@ A two-sided marketplace to buy and sell secondhand vinyl records.
 ![logo](docs/logo.png)
 
 ## Table of Contents
+- [Getting started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
 - [Problem](#problem)
 - [Solution](#solution)
 - [Planning and Design](#planning-and-design)
@@ -28,7 +31,50 @@ A two-sided marketplace to buy and sell secondhand vinyl records.
     - [APIs](#apis)
     - [Gems](#gems)
   - [Project tasks](#project-tasks)
+- [Acknowledgments](#acknowledgments)
 
+## Getting started
+
+These instructions will get you a copy of the project up and running on your local machine for development purposes.
+
+### Prerequisites
+```
+Ruby 2.4.1
+Rails 5.1
+PostgreSQL
+Amazon S3 Cloud Storage
+```
+
+### Installation
+
+Clone the repo
+```
+git clone https://github.com/julia-/long-play-records.git
+```
+
+Install gems
+```
+bundle install
+```
+
+Create `.env` file and add environment variables
+
+Create Database
+```
+rails db:create
+```
+
+Migrate tables
+```
+rails db:migrate
+```
+
+Start server
+```
+rails server
+```
+
+Open your chosen browser and navigate to http://localhost:3000.
 
 ## Problem
 In recents years vinyl records have dramatically increased in popularity with a 25 year high in sales reached in 2016 - even outselling digital music. Many new releases are available on vinyl and even older releases are now also being reissued on vinyl. With the increased popularity of vinyl and related events such as Record Store Day and record fairs, there is a greater demand for online shopfronts to facilitate the buying and selling of new, used and collectible records. With the exception of large, international sites such as Discogs, or non-specialist sites such as eBay there is little in the way of sites that focus on the secondhand and collectible record trade.
@@ -202,47 +248,7 @@ gem 'meta-tags'
 - [ ] Admin dashboard (optional)
 - [x] README
 
-## Getting started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-## Prerequisites
-```
-Ruby 2.4.1
-Rails 5.1
-PostgreSQL
-Amazon S3 Cloud Storage
-```
-
-## Installation
-
-Clone the repo
-```
-git clone https://github.com/julia-/long-play-records.git
-```
-
-Install gems
-```
-bundle install
-```
-Create `.env` file and add environment variables
-
-Create Database
-```
-rails db:create
-```
-Migrate tables
-```
-rails db:migrate
-```
-
-Start server
-```
-rails server
-```
-
-Open your chosen browser and navigate to http://localhost:3000.
-
-## Credits
+## Acknowledgments
 [Discogs API](https://www.discogs.com/developers)
 
 [Vinyl record by Aidan Cooke from the Noun Project](https://thenounproject.com/term/vinyl-record/1138317)
