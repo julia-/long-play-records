@@ -2,7 +2,16 @@
 @import "font-awesome";
 
 body {
+  margin:0;
+  padding:0;
+  height:100%;
   font-size: 18px;
+}
+
+.wrapper {
+  display: block;
+  min-height: 100%;
+  position: relative;
 }
 
 .flex-column {
@@ -62,9 +71,9 @@ a:hover {
 
 footer {
   display: inline-block;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  bottom: 0;
+  left: 0;
   min-height: 20vh;
   height: auto;
   margin-top: 3em;
