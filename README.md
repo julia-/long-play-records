@@ -8,29 +8,30 @@ A two-sided marketplace to buy and sell secondhand vinyl records.
 - [Getting started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Problem](#problem)
-- [Solution](#solution)
-- [Planning and Design](#planning-and-design)
-  - [Planning](#planning)
-    - [Audience](#audience)
-    - [User stories](#user-stories)
-      - [Buyers](#buyers)
-      - [Sellers](#sellers)
-      - [Buyers and Sellers](#buyers-and-sellers)
-    - [Entity Relationship Diagram](#entity-relationship-diagram)
-      - [Version One](#version-one)
-      - [Version Two](#version-two)
-  - [Design](#design)
-    - [Moodboard](#moodboard)
-    - [Logo](#logo)
-    - [Wireframes](#wireframes)
-      - [Mobile](#mobile)
-      - [Desktop](#desktop)
+- [About project](#about-project)
+  - [Problem](#problem)
+  - [Solution](#solution)
+- [Planning](#planning)
+  - [Audience](#audience)
+  - [User stories](#user-stories)
+    - [Buyers](#buyers)
+    - [Sellers](#sellers)
+    - [Buyers and Sellers](#buyers-and-sellers)
+  - [Entity Relationship Diagram](#entity-relationship-diagram)
+    - [Version One](#version-one)
+    - [Version Two](#version-two)
+  - [Trello](#trello)
+- [Design](#design)
+  - [Moodboard](#moodboard)
+  - [Logo](#logo)
+  - [Wireframes](#wireframes)
+    - [Mobile](#mobile)
+    - [Desktop](#desktop)
 - [Development](#development)
+  - [Requirements](#requirements)
   - [Technologies](#technologies)
-    - [APIs](#apis)
-    - [Gems](#gems)
-  - [Project tasks](#project-tasks)
+  - [APIs](#apis)
+  - [Gems](#gems)
 - [Acknowledgments](#acknowledgments)
 
 ## Getting started
@@ -76,18 +77,19 @@ rails server
 
 Open your chosen browser and navigate to http://localhost:3000.
 
-## Problem
+## About Project
+You are to design, build, deploy and present a Ruby on Rails application. You must build a two sided marketplace. This app will cater to two markets that your app brings together.
+
+### Problem
 In recents years vinyl records have dramatically increased in popularity with a 25 year high in sales reached in 2016 - even outselling digital music. Many new releases are available on vinyl and even older releases are now also being reissued on vinyl. With the increased popularity of vinyl and related events such as Record Store Day and record fairs, there is a greater demand for online shopfronts to facilitate the buying and selling of new, used and collectible records. With the exception of large, international sites such as Discogs, or non-specialist sites such as eBay there is little in the way of sites that focus on the secondhand and collectible record trade.
 
-## Solution
+### Solution
 Develop a two-sided marketplace rails application to enable people to buy and sell secondhand vinyl records.
 
-## Planning and design
-
-### Planning
+## Planning
 To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information
 
-#### Audience
+### Audience
 - Music lovers
 - Fans of vinyl
 - Collectors
@@ -95,8 +97,8 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 - Musicians/DJs
 - Lovers of secondhand goods
 
-#### User stories
-##### Buyer
+### User stories
+#### Buyer
 1. In order to find all records by a specific artist, as a fan, I want to be able to search by an artist’s name.
 2. In order to find all records an artist has made (including associated acts), as a fan, I want to see a list of all records the artist has been involved with when searching for the artist.
 3. In order to find records under $20, as a buyer, I want to be able to filter by price.
@@ -127,7 +129,7 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 27. In order to see what I've previously bought, as a buyer, I want to be able to see past orders.
 28. In order to know when new stock has been added, as a buyer, I want to be alerted by an email notification.
 
-##### Seller
+#### Seller
 1. In order to quickly add items to my inventory, as a seller, I want to be able to populate fields through a database.
 2. In order to provide buyers with as much information about the record, as a seller, I want to be able to add a description and information about the condition, price, postage, returns for the record.
 3. In order to make sure I process a new order asap, as a seller, I want to be notified when new orders has been placed.
@@ -139,23 +141,23 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 9. In order to receive payment for each sale, as a seller, I want payments to be done through stripe, PayPal.
 10. In order to promote certain records, as a seller, I want to be able feature items.
 
-##### Buyer/Seller
+#### Buyer/Seller
 1. In order to sell and buy records, as a collector, I want to use the same account for selling and buying.
 2. In order to keep my buying and selling separate, as a collector, I want to have different views for selling and buying.
 
-#### Entity Relationship Diagram
+### Entity Relationship Diagram
 During development I revised the ERD by removing several models and instead, displaying data from the Discogs API and only saving the necessary data from API calls.
 
 - [ERD v1](https://dbdesigner.net/designer/schema/125555)
 - [ERD v2](https://dbdesigner.net/designer/schema/122698)
 
-##### Version 1
+#### Version 1
 ![Entity Relationship Diagram v1](docs/erd-v1.png)
 
-##### Version 2
+#### Version 2
 ![Entity Relationship Diagram v2](docs/erd-v2.png)
 
-### Design
+## Design
 I began the design process by exploring online music stores to gain inspiration and ideas about how to present content. I also used this time to see what these sites are doing that could be improved in Long Play Records.
 
 - [Amoeba Music](http://www.amoeba.com)
@@ -170,47 +172,63 @@ Most sites that I reviewed had a dated and chaotic design that was distracting a
 I draw inspiration in my designs from [Banquet Records](https://www.banquetrecords.com) and in particular [Boomkat records](https://boomkat.com) which has a simple, understated and modern design. Boomkat's user experience is intuitive as the content is displayed progressively. The site does not overwhelm the visitor with content but at the same time was able to provide comprehensive information for each item.
 
 I wanted to create an experience that featured the cover art to gain the visitor's attention. I wanted the design to be reminiscent of a record store with the walls lined with records
-My goal was to design and build a portfolio site that was striking, unique and memorable while still being simple and minimal in design. My design needed give content and function priority - the design needed to support and not distract from the purpose of the site. My ultimate goal was to surprise and provide a fun experience for the viewer without overwhelming them.
 
-#### Moodboard
+### Moodboard
 
 ![Moodboard](docs/moodboard.png)
 
 [Moodboard | Long Play Records](https://www.pinterest.com.au/juliaryanx2645/long-play-records-mood-board)
 
-#### Logo
+### Logo
 
 ![Logo](docs/logo-favicon.png)
 
 [Logo & Favicon | Long Play Records](https://www.figma.com/file/I37qPPGFPntrRoBPT4SHr8TW/Long-Play-Records-Logo-and-Favicon)
 
-#### Mobile wireframes
+### Mobile wireframes
 
 [Mobile wireframes | Long Play Records](https://www.figma.com/file/MTmF3gVizwjaZq6ULLUkgClG/Long-Play-Records-Mobile)
 
-##### Mobile wireframes sample
+#### Mobile wireframes sample
 ![Mobile wireframe sample](docs/mobile-wireframe-sample.png)
 
-#### Desktop wireframes
+### Desktop wireframes
 
 [Desktop wireframes | Long Play Records](https://www.figma.com/file/E6mIy4ZOZSxJns8WURVAoa/Long-Play-Records-Desktop)
 
-##### Desktop wireframes sample
+#### Desktop wireframes sample
 ![Desktop wireframe sample](docs/desktop-wireframe-sample.png)
 
 ## Development
 
-### Technologies used
+### Requirements
+
+- [x] PostgreSQL Database
+- [x] API
+- [x] Gems
+- [x] Environmental variables
+- [x] Transactional emails
+- [x] Internal user messaging system
+- [x] Searching capability
+- [x] Sorting capability
+- [x] Filtering capability
+- [x] File uploading
+- [x] Authentication
+- [x] Authorisation
+- [ ] Admin dashboard (optional)
+- [x] README
+
+### Technologies
 ```
 Ruby 2.4.1
 Rails 5.1
 PostgreSQL
 Amazon S3 Cloud Storage
 ```
-#### API
+### API
 [Discogs API](https://www.discogs.com/developers)
 
-#### Gems
+### Gems
 ```ruby
 gem 'dotenv-rails'
 gem 'devise'
@@ -230,23 +248,6 @@ gem 'stripe'
 gem 'mailgun-ruby', '~>1.1.6'
 gem 'meta-tags'
 ```
-
-### Project tasks
-
-- [x] PostgreSQL Database
-- [x] API
-- [x] Gems
-- [x] Environmental variables
-- [x] Transactional emails
-- [x] Internal user messaging system
-- [x] Searching capability
-- [x] Sorting capability
-- [x] Filtering capability
-- [x] File uploading
-- [x] Authentication
-- [x] Authorisation
-- [ ] Admin dashboard (optional)
-- [x] README
 
 ## Acknowledgments
 [Discogs API](https://www.discogs.com/developers)
