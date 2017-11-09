@@ -19,10 +19,10 @@
     - [Wireframes](#wireframes)
       - [Mobile](#mobile)
       - [Desktop](#desktop)
-  - [Development](#development)
-    - [Technologies](#technologies)
-      - [APIs](#apis)
-      - [Gems](#gems)
+- [Development](#development)
+  - [Technologies](#technologies)
+    - [APIs](#apis)
+    - [Gems](#gems)
 
 ## Problem
 Buy and sell secondhand vinyl records.
@@ -33,7 +33,7 @@ Develop a two-sided marketplace rails application to enable people to buy and se
 people could add records they wanted
 
 
-## Design & Planning
+## Planning and design
 
 ### Planning
 To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information
