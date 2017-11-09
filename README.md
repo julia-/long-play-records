@@ -125,17 +125,21 @@ My goal was to design and build a portfolio site that was striking, unique and m
 
 #### Logo
 
+![Logo](docs/logo-favicon.png)
+
+[Logo & Favicon | Long Play Records](https://www.figma.com/file/I37qPPGFPntrRoBPT4SHr8TW/Long-Play-Records-Logo-and-Favicon)
+
 #### Wireframes
 
 ##### Mobile
 
-![Mobile wireframe sample](docs/desktop-wireframes-sample.png)
+![Mobile wireframe sample](docs/mobile-wireframe-sample.png)
 
-[Desktop Wireframes | Long Play Records](https://www.figma.com/file/MTmF3gVizwjaZq6ULLUkgClG/Long-Play-Records-Mobile)
+[Mobile Wireframes | Long Play Records](https://www.figma.com/file/MTmF3gVizwjaZq6ULLUkgClG/Long-Play-Records-Mobile)
 
 ##### Desktop
 
-![Desktop wireframe sample](docs/desktop-wireframes-sample.png)
+![Desktop wireframe sample](docs/desktop-wireframe-sample.png)
 
 [Desktop Wireframes | Long Play Records](https://www.figma.com/file/E6mIy4ZOZSxJns8WURVAoa/Long-Play-Records-Desktop)
 
