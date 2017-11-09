@@ -1,42 +1,48 @@
-<div class="d-flex flex-column pt-3 m-auto">
-  <div class="py-2">
-    <h2><%= title 'Records', 'Records for sale' %></h2>
+<div class="bg-container">
+  <div class="d-flex flex-column pt-3 m-auto">
+    <div class="pt-5 pb-3">
+      <h2><%= title 'Records', 'Records for sale' %></h2>
+    </div>
   </div>
-</div>
 
-<div class="d-flex flex-column py-2 m-auto">
-  <div class="py-2">
-    <%= render 'search' %>
+  <div class="d-flex flex-column py-2 m-auto">
+    <div class="py-2">
+      <%= render 'search' %>
+    </div>
   </div>
-</div>
 
-<div class="d-flex flex-row justify-content-around p-3 m-auto">
-  <%= render 'sort' %>
-  <%= render 'filter' %>
-</div>
+  <div class="d-flex flex-row justify-content-sm-between p-3 m-auto">
+    <div class="m-auto">
+      <%= render 'sort' %>
+    </div>
+    <div class="m-auto">
+      <%= render 'filter' %>
+    </div>
+  </div>
 
-<div class="d-flex flex-column flex-md-row justify-content-md-around m-auto">
-  <% @products.each do |product| %>
-    <% if !product.order %>
-      <div class="p-2">
-        <%= link_to product do %>
-          <figure>
-            <%= image_tag product.cover_image, class: 'cover-image' %>
-          </figure>
-          <h3><%= product.title %></h3>
-          <small><%= product.artist %></small>
-          <small><%= format_amount(product.price_cents) %></small>
-        <% end %>
-      </div>
+  <div class="d-flex flex-column flex-md-row justify-content-md-between m-auto">
+    <% @products.each do |product| %>
+      <% if !product.order %>
+        <div class="p-2">
+          <%= link_to product do %>
+            <figure>
+              <%= image_tag product.cover_image, class: 'cover-image' %>
+            </figure>
+            <h3><%= product.title %></h3>
+            <small><%= product.artist %></small>
+            <small><%= format_amount(product.price_cents) %></small>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-
-<div class="d-flex flex-column flex-md-row justify-content-md-around m-auto">
-  <div class="py-2">
-    <%= link_to 'Got a record to sell?', new_product_path, class: 'btn btn-block btn-outline-dark' %>
   </div>
-  <div class="py-2">
-    <%= paginate @products %>
+
+  <div class="d-flex flex-column flex-md-row justify-content-md-around m-auto">
+    <div class="py-2">
+      <%= link_to 'Got a record to sell?', new_product_path, class: 'btn btn-block btn-outline-dark' %>
+    </div>
+    <div class="py-2">
+      <%= paginate @products %>
+    </div>
   </div>
 </div>
