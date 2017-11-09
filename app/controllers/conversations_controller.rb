@@ -74,6 +74,7 @@ class ConversationsController < ApplicationController
 
     def set_conversation
       @conversation = Conversation.find(params[:id])
+      authorize @conversation
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
