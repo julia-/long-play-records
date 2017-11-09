@@ -83,7 +83,7 @@
             <%= link_to order_path(product.order) do %>
               <h4><%= product.title %></h4>
               <p><%= format_amount(product.price_cents) %></p>
-              <p><%= format_date(order.created_at) %></p>
+              <p><%= format_date(product.order.created_at) %></p>
             <% end %>
           </div>
         <% end %>
