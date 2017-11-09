@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   # GET /members
