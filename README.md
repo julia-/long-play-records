@@ -23,6 +23,8 @@
   - [Technologies](#technologies)
     - [APIs](#apis)
     - [Gems](#gems)
+  - [Project tasks](#project-tasks)
+
 
 ## Problem
 Buy and sell secondhand vinyl records.
@@ -94,11 +96,15 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 1. In order to sell and buy records, as a collector, I want to use the same account for selling and buying.
 2. In order to keep my buying and selling separate, as a collector, I want to have different views for selling and buying.
 
-#### ERD
+#### Entity Relationship Diagram
+- [ERD v1](https://dbdesigner.net/designer/schema/125555)
+- [ERD v2](https://dbdesigner.net/designer/schema/122698)
 
 ##### Version 1
+![Entity Relationship Diagram v1](docs/erd-v-1.png)
 
 ##### Version 2
+![Entity Relationship Diagram v2](docs/erd-v-2.png)
 
 ### Design
 I began the design process by exploring online music stores that sold vinyl to gain inspiration and ideas about how to present content. I also used this time to see what things these sites are doing that could be improved on Long Play Records.
@@ -129,23 +135,29 @@ My goal was to design and build a portfolio site that was striking, unique and m
 
 [Logo & Favicon | Long Play Records](https://www.figma.com/file/I37qPPGFPntrRoBPT4SHr8TW/Long-Play-Records-Logo-and-Favicon)
 
-#### Wireframes
+#### Mobile wireframes
 
-##### Mobile
+[Mobile wireframes | Long Play Records](https://www.figma.com/file/MTmF3gVizwjaZq6ULLUkgClG/Long-Play-Records-Mobile)
 
+##### Mobile wireframes sample
 ![Mobile wireframe sample](docs/mobile-wireframe-sample.png)
 
-[Mobile Wireframes | Long Play Records](https://www.figma.com/file/MTmF3gVizwjaZq6ULLUkgClG/Long-Play-Records-Mobile)
+#### Desktop wireframes
 
-##### Desktop
+[Desktop wireframes | Long Play Records](https://www.figma.com/file/E6mIy4ZOZSxJns8WURVAoa/Long-Play-Records-Desktop)
 
+##### Desktop wireframes sample
 ![Desktop wireframe sample](docs/desktop-wireframe-sample.png)
-
-[Desktop Wireframes | Long Play Records](https://www.figma.com/file/E6mIy4ZOZSxJns8WURVAoa/Long-Play-Records-Desktop)
 
 ## Development
 
 ### Technologies used
+```
+Ruby 2.4.1
+Rails 5.1
+PostgreSQL
+Amazon S3 Cloud Storage
+```
 #### API
 [Discogs API](https://www.discogs.com/developers)
 
@@ -170,7 +182,7 @@ gem 'mailgun-ruby', '~>1.1.6'
 gem 'meta-tags'
 ```
 
-## Tasks
+### Project tasks
 
 - [x] PostgreSQL Database
 - [x] API
