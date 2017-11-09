@@ -43,6 +43,7 @@ These instructions will get you a copy of the project up and running on your loc
 Ruby 2.4.1
 Rails 5.1
 PostgreSQL
+ImageMagick 6.8.9-8 Q16 x86_64 2014-10-23
 Amazon S3 Cloud Storage
 ```
 
@@ -217,6 +218,10 @@ I wanted to create an experience that featured the cover art to gain the visitor
 - [x] Authorisation
 - [ ] Admin dashboard (optional)
 - [x] README
+
+### Trello
+[Trello | Long Play Records](https://trello.com/b/7qkJpU7M)
+![Trello sample](docs/trello.png)
 
 ### Technologies
 ```
