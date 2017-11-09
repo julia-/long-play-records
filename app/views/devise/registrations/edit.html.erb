@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb" role="navigation">
   <ol class="breadcrumb">
     <li class="breadcrumb-item active" aria-current="page"><%= link_to 'Home', profile_path(current_user.profile) %></li>
-    <li class="breadcrumb-item active" aria-current="page">Edit <%= {resource_name.to_s.humanize} %></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
   </ol>
 </nav>
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Update" %>
+          <%= f.submit "Update", class: 'btn btn-block btn-outline-dark' %>
         </div>
       <% end %>
     </div>
@@ -48,8 +48,7 @@
       <h2 class="pb-3">Cancel my account</h3>
     </div>
     <div class="p-2">
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-block btn-outline-dark' %></p>
     </div>
   </div>
 </div>
-

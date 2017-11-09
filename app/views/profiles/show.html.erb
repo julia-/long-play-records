@@ -4,7 +4,7 @@
       <h2><%= title 'Profile' %></h2>
     </div>
   </div>
-  
+
   <!-- Account section -->
   <div class="d-flex flex-row justify-content-sm-around justify-content-between p-3">
     <div class="p-2">
@@ -35,7 +35,7 @@
       <p>
         <strong>Buyer rating</strong>
       </p>
-      <%= link_to 'Change password', edit_user_registration_path(current_user), class: 'font-weight-bold' %>
+      <%= link_to 'Change password', edit_user_registration_path, class: 'font-weight-bold' %>
     </div>
   </div>
 
@@ -135,7 +135,7 @@
       </div>
     <% end %>
   </div>
-  
+
   <!-- Wishlist section -->
   <div class="d-flex flex-column p-3">
     <div class="p-2">
