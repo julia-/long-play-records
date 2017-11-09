@@ -86,7 +86,7 @@ class ProductsController < ApplicationController
 
     @product.title = response['title']
     @product.artist = response['artists'][0]['name']
-    @product.cover_image = response['thumb']
+    @product.cover_image = response['images'][0]['resource_url']
 
     respond_to do |format|
       if @product.save
