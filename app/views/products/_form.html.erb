@@ -1,95 +1,81 @@
-
-<div class="row justify-content-center bg-form mx-auto py-3">
-  <div class="col-md-6">
-    <%= form_with url: new_product_path, local: true, skip_enforcing_utf8: true, method: :get do  |form| %>
-    <div class="form-group">
-      <%= form.label :query, 'Search for the release you would like to sell', class: 'col-form-label font-weight-bold' %>
-      <div class="input-group">
-        <%= form.text_field :query, class: 'form-control', autofocus: true, required: true %>
-        <span class="input-group-btn">
-          <%= form.submit 'Search', name: nil, class: 'btn btn-outline-dark' %>
-        </span>
-      </div>
+<%= form_with url: new_product_path, local: true, skip_enforcing_utf8: true, method: :get do  |form| %>
+  <div class="form-group">
+    <%= form.label :query, 'Search for the release you would like to sell', class: 'col-form-label font-weight-bold' %>
+    <div class="input-group">
+      <%= form.text_field :query, class: 'form-control', autofocus: true, required: true %>
+      <span class="input-group-btn">
+        <%= form.submit 'Search', name: nil, class: 'btn btn-outline-dark' %>
+      </span>
     </div>
-    <% end %>
   </div>
-</div>
+<% end %>
 
-<div class="row mx-auto justify-content-center bg-form pb-5">
-  <div class="col-md-6">
-    <%= form_with(model: product, local: true) do |form| %>
-      <% if product.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-          <ul>
-            <% product.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <% if @release_data %>
-        <h2>Releases</h2>
-        <div class="alert alert-info" role="alert">
-          Select release
-        </div>
-        <% @release_data.each do |release| %>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <%= form.radio_button(:discogs_id, release['id'], required: true) %>
-              </span>
-              <% if release['thumb'].empty? %>
-                <%= image_tag 'record_placeholder.png', class: 'cover-art' %>
-              <% else %>
-                <%= image_tag release['thumb'], class: 'cover-art' %>
-              <% end %>
-              <%= form.label(:discogs_id, "#{release['title']} | Released: #{release['year']} | Catalogue number: #{release['catno']} | Country: #{release['country']} | Format: #{format_list(release['format'])}", class: 'form-control') %>
-            </div>
-          </div>
+      <ul>
+        <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
         <% end %>
-      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-      <!-- <div class="form-group">
-        <%#= form.label :name, class: 'col-form-label font-weight-bold' %>
-        <%#= form.text_field :name, id: :product_name, class: 'form-control', required: true %>
-      </div> -->
-
+  <% if @release_data %>
+    <h2>Releases</h2>
+    <div class="alert alert-info" role="alert">
+      Select release
+    </div>
+    <% @release_data.each do |release| %>
       <div class="form-group">
-        <%= form.label :price_cents, 'Price', class: 'col-form-label font-weight-bold' %>
         <div class="input-group">
-          <span class="input-group-addon">$</span>
-          <%= form.number_field :price_cents, min: 0.01, step: 0.01, id: :product_price_cents, class: 'form-control', required: true %>
+          <span class="input-group-addon">
+            <%= form.radio_button(:discogs_id, release['id'], required: true) %>
+          </span>
+          <% if release['thumb'].empty? %>
+            <%= image_tag 'record_placeholder.png', class: 'cover-art' %>
+          <% else %>
+            <%= image_tag release['thumb'], class: 'cover-art' %>
+          <% end %>
+          <%= form.label(:discogs_id, "#{release['title']} | Released: #{release['year']} | Catalogue number: #{release['catno']} | Country: #{release['country']} | Format: #{format_list(release['format'])}", class: 'form-control') %>
         </div>
-      </div>
-      <div class="form-group">
-        <%= form.label :postage_cents, 'Postage', class: 'col-form-label font-weight-bold' %>
-        <div class="input-group">
-          <span class="input-group-addon">$</span>
-          <%= form.number_field :postage_cents, min: 0.01, step: 0.01, id: :product_postage_cents, class: 'form-control', required: true %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :record_condition, class: 'col-form-label font-weight-bold' %>
-        <%= form.select(:record_condition, [['Mint'], ['Near Mint'], ['Very Good'], ['Good'], ['Fair'], ['Poor']], { prompt: 'Select condition' }, { class: 'form-control', id: :product_record_condition, required: true }) %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :sleeve_condition, class: 'col-form-label font-weight-bold' %>
-        <%= form.select(:sleeve_condition, [['Mint'], ['Near Mint'], ['Very Good'], ['Good'], ['Fair'], ['Poor']], { prompt: 'Select condition' }, { class: 'form-control', id: :product_record_condition, required: true }) %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :description, class: 'col-form-label font-weight-bold' %>
-        <%= form.text_area :description, id: :product_description, class: 'form-control', required: true %>
-      </div>
-
-      <div class="mx-auto py-3">
-        <%= form.submit class: 'btn btn-block btn-outline-dark' %>
       </div>
     <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :price_cents, 'Price', class: 'col-form-label font-weight-bold' %>
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= form.number_field :price_cents, min: 0.01, step: 0.01, id: :product_price_cents, class: 'form-control', required: true %>
+    </div>
   </div>
-</div>
+  <div class="form-group">
+    <%= form.label :postage_cents, 'Postage', class: 'col-form-label font-weight-bold' %>
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= form.number_field :postage_cents, min: 0.01, step: 0.01, id: :product_postage_cents, class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :record_condition, class: 'col-form-label font-weight-bold' %>
+    <%= form.select(:record_condition, [['Mint'], ['Near Mint'], ['Very Good'], ['Good'], ['Fair'], ['Poor']], { prompt: 'Select condition' }, { class: 'form-control', id: :product_record_condition, required: true }) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :sleeve_condition, class: 'col-form-label font-weight-bold' %>
+    <%= form.select(:sleeve_condition, [['Mint'], ['Near Mint'], ['Very Good'], ['Good'], ['Fair'], ['Poor']], { prompt: 'Select condition' }, { class: 'form-control', id: :product_record_condition, required: true }) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, class: 'col-form-label font-weight-bold' %>
+    <%= form.text_area :description, id: :product_description, class: 'form-control', required: true %>
+  </div>
+
+  <div class="mx-auto py-3">
+    <%= form.submit class: 'btn btn-block btn-outline-dark' %>
+  </div>
+<% end %>

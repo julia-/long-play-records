@@ -1,14 +1,16 @@
-<div class="container">
-  <nav aria-label="breadcrumb" role="navigation">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page"><%= link_to 'Home', root_path %></li>
-      <li class="breadcrumb-item active" aria-current="page">Create profile</li>
-    </ol>
-  </nav>
-  <div class="row justify-content-center mx-auto bg-form pt-5">
-    <div class="col-md-6">
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page"><%= link_to 'Home', root_path %></li>
+    <li class="breadcrumb-item active" aria-current="page">Create profile</li>
+  </ol>
+</nav>
+<div class="bg-container">
+  <div class="d-flex flex-column py-5 m-auto">
+    <div class="col-md-8 mx-auto py-3">
       <h2><%= title 'Create Profile', 'Create profile' %></h2>
     </div>
+    <div class="col-md-8 mx-auto py-3">
+      <%= render 'form', profile: @profile %>
+    </div>
   </div>
-  <%= render 'form', profile: @profile %>
 </div>
