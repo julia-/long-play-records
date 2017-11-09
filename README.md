@@ -88,17 +88,13 @@ In recents years vinyl records have dramatically increased in popularity with a 
 Develop a two-sided marketplace rails application to enable people to buy and sell secondhand vinyl records.
 
 ## Planning
-I first started thinking about who would be my audience and then from there I commenced creating user stories for sellers, buyers and buyer/sellers.
+I first started thinking about who would be the audience for a secondhand record store and then from there I commenced creating user stories for sellers, buyers and buyer/sellers. I used these user stories to help define my data models and attributes.
 
-I used these user stories to help define my data models and attributes.
+To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information about releases to ensure information was correct due there being multiple versions for most releases. I decided to go with the Discogs API as the database is made available under the *CC0 No Rights Reserved* license.
 
-To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information about releases to ensure information was correct due there being multiple versions for most releases.
+I played around with the API to help identify any other models and attributes that would be needed due to the output of the different API calls I would need to make.
 
-I decided to go with Discogs API as the database made available under the CC0 No Rights Reserved license.
-
-I played around with the API to help identify any other models and attributes that would be needed.
-
-I used a combination of trello and paper and pen to list and to breakdown tasks that I needed to complete for the next two weeks.
+I used a combination of trello and paper and pen to list and breakdown the different tasks that I would need to complete for the next two weeks. I worked out which features and tasks needed to be done to be able complete other features/tasks that were connected.
 
 ### Audience
 - Music lovers
@@ -274,6 +270,16 @@ gem 'meta-tags'
 - Working with an API was a time consuming but rewarding process - difficult working out what I should save and what I can't.
 - Discovering that Discogs API doesn't let you download the images.
 - I usually write custom CSS but decided to use Bootstrap. As I'm not that familiar with it this ended up being a mistake.
+
+Due to time constraints, I still need to complete the views layout and styling and build the following features:
+
+- Shopping cart
+- Wishlist
+- Saved sellers
+- Landing page
+- Store page for each seller
+- Rating and reviews
+- Update payment to Stripe Connect
 
 ## Acknowledgments
 [Discogs API](https://www.discogs.com/developers)
