@@ -6,11 +6,11 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     if params[:query]
-      @products = Product.search(params[:query]).page(params[:page]).per(50)
+      @products = Product.search(params[:query]).page(params[:page]).per(10)
     elsif params[:filter_by]
-      @products = Product.filter(params[:filter_by]).page(params[:page]).per(50)
+      @products = Product.filter(params[:filter_by]).page(params[:page]).per(10)
     else
-      @products = Product.all.order_products(params[:sort_by]).page(params[:page]).per(50)
+      @products = Product.all.order_products(params[:sort_by]).page(params[:page]).per(10)
     end
   end
 
