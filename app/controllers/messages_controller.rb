@@ -70,6 +70,7 @@ class MessagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])
+      authorize @mesage
     end
 
     def set_conversation
