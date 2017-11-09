@@ -101,10 +101,10 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 - [ERD v2](https://dbdesigner.net/designer/schema/122698)
 
 ##### Version 1
-![Entity Relationship Diagram v1](docs/erd-v-1.png)
+![Entity Relationship Diagram v1](docs/erd-v1.png)
 
 ##### Version 2
-![Entity Relationship Diagram v2](docs/erd-v-2.png)
+![Entity Relationship Diagram v2](docs/erd-v2.png)
 
 ### Design
 I began the design process by exploring online music stores that sold vinyl to gain inspiration and ideas about how to present content. I also used this time to see what things these sites are doing that could be improved on Long Play Records.
