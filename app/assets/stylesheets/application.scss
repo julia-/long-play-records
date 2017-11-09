@@ -22,10 +22,15 @@ a {
   color: #333;
 }
 
-a:hover {
+a:hover,
+a h3:hover {
   text-decoration: underline;
-  background: #333;
+  background: #c94ee8;
   color : #f2f2f2;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #333;
 }
 
 .bg-container {
@@ -51,6 +56,14 @@ a:hover {
 .cover-image {
   max-width: 100%;
   height: auto;
+}
+
+.product-box {
+  display: block;
+}
+
+.product-box:hover {
+  background-color: #333;
 }
 
 .btn {
@@ -89,7 +102,7 @@ footer h2 {
 }
 
 ul {
-  list-style: none; 
+  list-style: none;
 }
 
 .footer-links {

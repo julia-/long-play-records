@@ -23,16 +23,16 @@
   <div class="d-flex flex-column flex-md-row justify-content-md-between m-auto">
     <% @products.each do |product| %>
       <% if !product.order %>
-        <div class="p-2">
-          <%= link_to product do %>
+        <%= link_to product, class: 'product-box' do %>
+          <div class="p-2">
             <figure>
               <%= image_tag product.cover_image, class: 'cover-image' %>
             </figure>
             <h3><%= product.title %></h3>
             <small><%= product.artist %></small>
             <small><%= format_amount(product.price_cents) %></small>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
