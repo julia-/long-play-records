@@ -1,4 +1,8 @@
-# Long Play Records Marketplace
+# Long Play Records
+
+A two-sided marketplace to buy and sell secondhand vinyl records.
+
+![logo](docs/logo.png)
 
 ## Table of Contents
 - [Problem](#problem)
@@ -27,13 +31,10 @@
 
 
 ## Problem
-Buy and sell secondhand vinyl records.
+In recents years vinyl records have dramatically increased in popularity with a 25 year high in sales reached in 2016 - even outselling digital music. Many new releases are available on vinyl and even older releases are now also being reissued on vinyl. With the increased popularity of vinyl and related events such as Record Store Day and record fairs, there is a greater demand for online shopfronts to facilitate the buying and selling of new, used and collectible records. With the exception of large, international sites such as Discogs, or non-specialist sites such as eBay there is little in the way of sites that focus on the secondhand and collectible record trade.
 
 ## Solution
 Develop a two-sided marketplace rails application to enable people to buy and sell secondhand vinyl records.
-
-people could add records they wanted
-
 
 ## Planning and design
 
@@ -97,6 +98,8 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 2. In order to keep my buying and selling separate, as a collector, I want to have different views for selling and buying.
 
 #### Entity Relationship Diagram
+During development I revised the ERD by removing several models and instead, displaying data from the Discogs API and only saving the necessary data from API calls.
+
 - [ERD v1](https://dbdesigner.net/designer/schema/125555)
 - [ERD v2](https://dbdesigner.net/designer/schema/122698)
 
@@ -107,7 +110,7 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 ![Entity Relationship Diagram v2](docs/erd-v2.png)
 
 ### Design
-I began the design process by exploring online music stores that sold vinyl to gain inspiration and ideas about how to present content. I also used this time to see what things these sites are doing that could be improved on Long Play Records.
+I began the design process by exploring online music stores to gain inspiration and ideas about how to present content. I also used this time to see what these sites are doing that could be improved in Long Play Records.
 
 - [Amoeba Music](http://www.amoeba.com)
 - [Banquet Records](https://www.banquetrecords.com)
@@ -116,7 +119,7 @@ I began the design process by exploring online music stores that sold vinyl to g
 - [InterPunk](http://www.interpunk.com)
 - [Red Eye Records](https://www.redeye.com.au)
 
-Most sites that I reviewed had a dated and chaotic design that were distracting and had no clear path.
+Most sites that I reviewed had a dated and chaotic design that was distracting and had no clear path for the site's visitors.
 
 I draw inspiration in my designs from [Banquet Records](https://www.banquetrecords.com) and in particular [Boomkat records](https://boomkat.com) which has a simple, understated and modern design. Boomkat's user experience is intuitive as the content is displayed progressively. The site does not overwhelm the visitor with content but at the same time was able to provide comprehensive information for each item.
 
@@ -198,3 +201,50 @@ gem 'meta-tags'
 - [x] Authorisation
 - [ ] Admin dashboard (optional)
 - [x] README
+
+## Getting started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+## Prerequisites
+```
+Ruby 2.4.1
+Rails 5.1
+PostgreSQL
+Amazon S3 Cloud Storage
+```
+
+## Installation
+
+Clone the repo
+```
+git clone https://github.com/julia-/long-play-records.git
+```
+
+Install gems
+```
+bundle install
+```
+Create `.env` file and add environment variables
+
+Create Database
+```
+rails db:create
+```
+Migrate tables
+```
+rails db:migrate
+```
+
+Start server
+```
+rails server
+```
+
+Open your chosen browser and navigate to http://localhost:3000.
+
+## Credits
+[Discogs API](https://www.discogs.com/developers)
+
+[Vinyl record by Aidan Cooke from the Noun Project](https://thenounproject.com/term/vinyl-record/1138317)
+
+Long Play Records was designed and developed for Coder Academy's Term Two Major Project.
