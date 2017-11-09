@@ -3,6 +3,26 @@
 ## Table of Contents
 - [Problem](#problem)
 - [Solution](#solution)
+- [Planning and Design](#planning-and-design)
+  - [Planning](#planning)
+    - [Audience](#audience)
+    - [User stories](#user-stories)
+      - [Buyers](#buyers)
+      - [Sellers](#sellers)
+      - [Buyers and Sellers](#buyers-and-sellers)
+    - [Entity Relationship Diagram](#entity-relationship-diagram)
+      - [Version One](#version-one)
+      - [Version Two](#version-two)
+  - [Design](#design)
+    - [Moodboard](#moodboard)
+    - [Logo](#logo)
+    - [Wireframes](#wireframes)
+      - [Mobile](#mobile)
+      - [Desktop](#desktop)
+  - [Development](#development)
+    - [Technologies](#technologies)
+      - [APIs](#apis)
+      - [Gems](#gems)
 
 ## Problem
 Buy and sell secondhand vinyl records.
@@ -18,8 +38,7 @@ people could add records they wanted
 ### Planning
 To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information
 
-### Audience
-#### Buyers and sellers
+#### Audience
 - Music lovers
 - Fans of vinyl
 - Collectors
@@ -27,8 +46,8 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 - Musicians/DJs
 - Lovers of secondhand goods
 
-### User stories
-#### Buyer
+#### User stories
+##### Buyer
 1. In order to find all records by a specific artist, as a fan, I want to be able to search by an artist’s name.
 2. In order to find all records an artist has made (including associated acts), as a fan, I want to see a list of all records the artist has been involved with when searching for the artist.
 3. In order to find records under $20, as a buyer, I want to be able to filter by price.
@@ -59,7 +78,7 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 27. In order to see what I've previously bought, as a buyer, I want to be able to see past orders.
 28. In order to know when new stock has been added, as a buyer, I want to be alerted by an email notification.
 
-#### Seller
+##### Seller
 1. In order to quickly add items to my inventory, as a seller, I want to be able to populate fields through a database.
 2. In order to provide buyers with as much information about the record, as a seller, I want to be able to add a description and information about the condition, price, postage, returns for the record.
 3. In order to make sure I process a new order asap, as a seller, I want to be notified when new orders has been placed.
@@ -71,17 +90,15 @@ To deliver what I had envisioned I decided to look at incorporating an API where
 9. In order to receive payment for each sale, as a seller, I want payments to be done through stripe, PayPal.
 10. In order to promote certain records, as a seller, I want to be able feature items.
 
-#### Buyer/Seller
+##### Buyer/Seller
 1. In order to sell and buy records, as a collector, I want to use the same account for selling and buying.
 2. In order to keep my buying and selling separate, as a collector, I want to have different views for selling and buying.
 
-### User journeys
+#### ERD
 
-### ERD
+##### Version 1
 
-#### Version 1
-
-#### Version 2
+##### Version 2
 
 ### Design
 I began the design process by exploring online music stores that sold vinyl to gain inspiration and ideas about how to present content. I also used this time to see what things these sites are doing that could be improved on Long Play Records.
@@ -105,6 +122,8 @@ My goal was to design and build a portfolio site that was striking, unique and m
 ![Moodboard](docs/moodboard.png)
 
 [Moodboard | Long Play Records](https://www.pinterest.com.au/juliaryanx2645/long-play-records-mood-board)
+
+#### Logo
 
 #### Wireframes
 
