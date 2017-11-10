@@ -32,6 +32,7 @@ A two-sided marketplace to buy and sell secondhand vinyl records.
   - [APIs](#apis)
   - [Gems](#gems)
 - [Challenges and final thoughts](#challenges-and-final-thoughts)
+- [Future developments](#future-developments)
 - [Acknowledgments](#acknowledgments)
 
 ## Getting started
@@ -76,21 +77,21 @@ Start server
 rails server
 ```
 
-Open your chosen browser and navigate to http://localhost:3000.
+Open in your browser and navigate to http://localhost:3000.
 
 ## About Project
 You are to design, build, deploy and present a Ruby on Rails application. You must build a two sided marketplace. This app will cater to two markets that your app brings together.
 
 ### Problem
-In recents years vinyl records have dramatically increased in popularity with a 25 year high in sales reached in 2016 - even outselling digital music. Many new releases are available on vinyl and even older releases are now being reissued on vinyl. With the increased popularity of vinyl and related events such as Record Store Day and record fairs, there is a greater demand for online shopfronts to facilitate the buying and selling of new, used and collectible records. With the exception of large, international sites such as Discogs, or non-specialist sites such as eBay there is little in the way of sites that focus on the secondhand and collectible record trade.
+In recents years vinyl records have dramatically increased in popularity with a 25 year high in sales reached last year - even outselling digital music. Many new releases are available on vinyl and even older releases are now being reissued on vinyl. With the increased popularity of vinyl and related events such as Record Store Day and record fairs, there is greater demand for online shopfronts to facilitate the buying and selling of new, used and collectible records. With the exception of large, international sites such as Discogs, or non-specialist sites such as eBay there is little in the way of sites that focus on the secondhand and collectible record trade.
 
 ### Solution
 Develop a two-sided marketplace rails application to enable people to buy and sell secondhand vinyl records.
 
 ## Planning
-I first started thinking about who would be the audience for a secondhand record store and then from there I commenced creating user stories for sellers, buyers and buyer/sellers. I used these user stories to help define my data models and attributes.
+I first started thinking about who would be the audience for a secondhand record store and then from there I commenced creating user stories for sellers, buyers and buyer/sellers. I used these user stories to help define my data models and attributes and create wireframes.
 
-To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information about releases to ensure information was correct due there being multiple versions for most releases. I decided to go with the Discogs API as the database is made available under the *CC0 No Rights Reserved* license.
+To deliver what I had envisioned I decided to look at incorporating an API where I could pull in most information about releases to ensure information was correct due to multiple versions for most releases. I decided to go with the Discogs API as the database is made available under the *CC0 No Rights Reserved* license.
 
 I played around with the API to help identify any other models and attributes that would be needed due to the output of the different API calls I would need to make.
 
@@ -266,13 +267,14 @@ gem 'mailgun-ruby', '~>1.1.6'
 gem 'meta-tags'
 ```
 ## Challenges and final thoughts
-- I found working out the data models and attributes challenging.
-- Working with an API was a time consuming but rewarding process - difficult working out what I should save and what I can't.
+- The data models and attributes.
+- Working with an API - it was time consuming but rewarding process.
+- What I should save and what I can't from the API.
 - Discovering that Discogs API doesn't let you download the images.
-- I usually write custom CSS but decided to use Bootstrap. As I'm not that familiar with it this ended up being a mistake.
+- Using Bootstrap.
 
-Due to time constraints, I still need to complete the views layout and styling and build the following features:
-
+## Future developments
+- Design and layout
 - Shopping cart
 - Wishlist
 - Saved sellers
@@ -280,6 +282,7 @@ Due to time constraints, I still need to complete the views layout and styling a
 - Store page for each seller
 - Rating and reviews
 - Update payment to Stripe Connect
+- Improve searching for records on sale
 
 ## Acknowledgments
 [Discogs API](https://www.discogs.com/developers)
