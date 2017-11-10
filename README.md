@@ -3,6 +3,8 @@ A two-sided marketplace to buy and sell secondhand vinyl records.
 
 ![logo](docs/logo.png)
 
+[Presentation](http://slides.com/juliaryan/long-play-records/fullscreen)
+
 ## Table of Contents
 - [Getting started](#getting-started)
   - [Prerequisites](#prerequisites)
